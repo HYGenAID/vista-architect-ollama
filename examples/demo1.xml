@@ -1,0 +1,95 @@
+<eventstream person_id="987654321">
+  <encounter start_timestamp="2022-02-10 08:00:00" end_timestamp="2024-07-15 16:00:00">
+    <person>
+      <birthdate>1955-01-01</birthdate>
+      <age>
+        <days>25567</days>
+        <years>70</years>
+      </age>
+      <demographics>
+        <ethnicity>White</ethnicity>
+        <gender>MALE</gender>
+      </demographics>
+      <payerplan>BLUE CROSS - PPO|123|BLUE CROSS</payerplan>
+    </person>
+    <caresites>
+      <caresite care_site_id="123456" care_site_name="ONCOLOGY CLINIC"/>
+      <caresite care_site_id="789012" care_site_name="THORACIC SURGERY"/>
+      <caresite care_site_id="345678" care_site_name="RADIOLOGY DEPARTMENT"/>
+    </caresites>
+    <providers>
+      <provider provider_id="112233" gender="MALE" speciality="Oncology" year_of_birth="1980" care_site_name="ONCOLOGY CLINIC"/>
+      <provider provider_id="445566" gender="FEMALE" speciality="Thoracic Surgery" year_of_birth="1978" care_site_name="THORACIC SURGERY"/>
+      <provider provider_id="778899" gender="MALE" speciality="Radiology" year_of_birth="1985" care_site_name="RADIOLOGY DEPARTMENT"/>
+    </providers>
+    <events>
+      <entry timestamp="2022-02-10 08:00:00">
+        <event care_site_id="123456" provider_id="112233" visit_id="5000001" type="visit" code="HEALTHCARE_VISIT/Outpatient|Routine|Office Visit" name="">start</event>
+        <event provider_id="112233" type="condition" code="ICD10/R05" name="Persistent cough post-COVID-19 infection"></event>
+        <event note_id="1000001" provider_id="112233" type="note" code="LOINC/11506-3" name="Initial Evaluation Note">Patient Thor Axlung, 67-year-old male with history of smoking (quit 2018, 40 pack-years), COPD, and hypertension, presents with persistent cough lasting 3 weeks following a recent COVID-19 infection. No fever, hemoptysis, or significant weight loss reported. Physical exam: Clear lungs, no distress. Ordered chest CT to evaluate.</event>
+      </entry>
+      <entry timestamp="2022-02-15 10:00:00">
+        <event care_site_id="345678" provider_id="778899" procedure_id="6000001" type="procedure" code="CPT/71260" name="CT Chest without contrast"></event>
+        <event note_id="1000002" provider_id="778899" type="note" code="LOINC/11537-8" name="Imaging Report">CT Chest: 3.2 cm mass in left upper lobe with associated hilar adenopathy. No evidence of distant metastasis. Recommend further evaluation with biopsy. Referred to oncology for consultation.</event>
+      </entry>
+      <entry timestamp="2022-03-05 09:00:00">
+        <event care_site_id="123456" provider_id="112233" procedure_id="6000002" type="procedure" code="CPT/31625" name="Bronchoscopy with biopsy"></event>
+        <event provider_id="112233" type="condition" code="ICD10/C34.11" name="Malignant neoplasm of upper lobe, right bronchus or lung"></event>
+        <event note_id="1000003" provider_id="112233" type="note" code="LOINC/33756-9" name="Pathology Report">Biopsy from left upper lobe mass: Moderately differentiated squamous cell carcinoma. NGS panel results: ALK rearrangement positive. EGFR: Negative. ROS1: Negative. BRAF: Negative. MET exon 14: Negative. RET: Negative. NTRK: Negative. KRAS: Negative. ERBB2 (HER2): Negative. NRG1: Negative. PD-L1 expression: Low (TPS 20%). Recommend staging PET/CT.</event>
+      </entry>
+      <entry timestamp="2022-03-10 11:00:00">
+        <event care_site_id="345678" provider_id="778899" procedure_id="6000003" type="procedure" code="CPT/78815" name="PET/CT Scan"></event>
+        <event note_id="1000004" provider_id="778899" type="note" code="LOINC/11537-8" name="Imaging Report">PET/CT: Hypermetabolic left upper lobe nodule (SUV 14.2), hilar lymph nodes involved, no distant metastases. Staging: cT2bN1M0 (Stage IIA). Proceed to surgical evaluation.</event>
+        <event type="observation" code="LOINC/2039-6" name="CEA Level">Value: 4.5 ng/mL (normal &lt;5.0)</event>
+        <event type="observation" code="LOINC/57021-8" name="CBC Panel">WBC: 8.2 x10^3/uL, Hb: 13.5 g/dL, Plt: 250 x10^3/uL</event>
+      </entry>
+      <entry timestamp="2022-04-18 07:00:00">
+        <event care_site_id="789012" provider_id="445566" procedure_id="6000004" type="procedure" code="CPT/32663" name="Thoracoscopic left upper lobectomy with lymph node dissection"></event>
+        <event note_id="1000005" provider_id="445566" type="note" code="LOINC/11506-3" name="Surgical Note">Performed left upper lobectomy and mediastinal lymph node dissection. Pathology: pT2bN1M0 squamous cell carcinoma, margins clear. Patient tolerated procedure well, discharged on POD 5.</event>
+      </entry>
+      <entry timestamp="2022-06-20 14:00:00">
+        <event care_site_id="123456" provider_id="112233" visit_id="5000002" type="visit" code="HEALTHCARE_VISIT/Outpatient|Follow-up|Post-op Surveillance" name=""></event>
+        <event note_id="1000006" provider_id="112233" type="note" code="LOINC/11506-3" name="Follow-up Note">Post-op CT stable, no evidence of recurrence. No adjuvant therapy recommended given stage and performance status (ECOG 0). Continue surveillance every 3-6 months. Patient reports good recovery, minimal dyspnea managed with inhalers for COPD.</event>
+        <event type="observation" code="LOINC/2039-6" name="CEA Level">Value: 3.8 ng/mL</event>
+        <event type="observation" code="LOINC/57021-8" name="CBC Panel">WBC: 7.5 x10^3/uL, Hb: 14.0 g/dL, Plt: 220 x10^3/uL</event>
+      </entry>
+      <entry timestamp="2023-11-15 10:30:00">
+        <event care_site_id="345678" provider_id="778899" procedure_id="6000005" type="procedure" code="CPT/71260" name="Surveillance CT Chest"></event>
+        <event note_id="1000007" provider_id="778899" type="note" code="LOINC/11537-8" name="Imaging Report">New 2.5 cm nodule in left lower lobe, suspicious for recurrence. Mild hilar enlargement. Recommend PET/CT for further staging. Patient noted mild dyspnea and 5 lb weight loss since last visit.</event>
+      </entry>
+      <entry timestamp="2024-01-08 09:00:00">
+        <event care_site_id="345678" provider_id="778899" procedure_id="6000006" type="procedure" code="CPT/78815" name="PET/CT Scan"></event>
+        <event note_id="1000008" provider_id="778899" type="note" code="LOINC/11537-8" name="Imaging Report">Recurrent disease: Left lower lobe mass 6.5 x 4.8 cm (SUV 18.6), bilateral pulmonary nodules, hilar nodes, and hypermetabolic bone lesions in T10 vertebra and right rib. No brain involvement on concurrent MRI. Staging: cT3N2M1b (Stage IV). Refer back to oncology for systemic therapy options.</event>
+        <event type="observation" code="LOINC/2039-6" name="CEA Level">Value: 12.3 ng/mL (elevated)</event>
+        <event type="observation" code="LOINC/57021-8" name="CBC Panel">WBC: 9.1 x10^3/uL, Hb: 12.8 g/dL, Plt: 180 x10^3/uL</event>
+      </entry>
+      <entry timestamp="2024-02-22 11:00:00">
+        <event care_site_id="123456" provider_id="112233" procedure_id="6000007" type="procedure" code="CPT/31629" name="EBUS-FNA of mediastinal nodes"></event>
+        <event note_id="1000009" provider_id="112233" type="note" code="LOINC/33756-9" name="Pathology Report">FNA from mediastinal nodes: Positive for squamous cell carcinoma, ALK rearrangement confirmed via FISH. Updated NGS: ALK positive; all other markers (EGFR, ROS1, BRAF, MET, RET, NTRK, KRAS, ERBB2, NRG1) negative. PD-L1 TPS 20% (low). Recommend initiation of systemic therapy.</event>
+      </entry>
+      <entry timestamp="2024-03-15 08:00:00">
+        <event care_site_id="123456" provider_id="112233" visit_id="5000003" type="visit" code="HEALTHCARE_VISIT/Outpatient|Treatment Initiation" name=""></event>
+        <event note_id="1000010" provider_id="112233" type="note" code="LOINC/74156-1" name="Oncology Treatment Plan Note">Initiated pembrolizumab + carboplatin/paclitaxel for metastatic ALK-positive squamous NSCLC. Vitals: BP 140/85, HR 92, SpO2 94%, Weight 78 kg, BMI 25.1. Patient counseled on side effects. ALK inhibitors like alectinib considered for future if progression. Follow-up imaging in 2 months.</event>
+      </entry>
+      <entry timestamp="2024-05-10 13:00:00">
+        <event care_site_id="123456" provider_id="112233" visit_id="5000004" type="visit" code="HEALTHCARE_VISIT/Outpatient|Follow-up After 2 Cycles" name=""></event>
+        <event note_id="1000011" provider_id="112233" type="note" code="LOINC/11506-3" name="Progress Note">After 2 cycles of therapy: Partial response noted on interim CT (mass reduced to 4.2 cm). However, patient reports grade 2 neuropathy and fatigue. Dose reduction implemented. Continue regimen; reassess after 2 more cycles. No new mets on bone scan.</event>
+        <event type="observation" code="LOINC/2039-6" name="CEA Level">Value: 7.6 ng/mL (decreasing)</event>
+        <event type="observation" code="LOINC/57021-8" name="CBC Panel">WBC: 6.8 x10^3/uL, Hb: 11.9 g/dL, Plt: 150 x10^3/uL</event>
+      </entry>
+      <entry timestamp="2024-06-28 10:00:00">
+        <event care_site_id="123456" provider_id="112233" visit_id="5000005" type="visit" code="HEALTHCARE_VISIT/Outpatient|Post-Treatment Follow-up" name=""></event>
+        <event note_id="1000012" provider_id="112233" type="note" code="LOINC/11506-3" name="Progress Note">Completed 4 cycles with stable disease. Ongoing symptoms: Progressive cough and 6 lb weight loss. Vitals stable. Plan for restaging PET/CT. Discussed potential switch to alectinib if progression, given ALK status from prior pathology.</event>
+      </entry>
+      <entry timestamp="2024-07-15 15:00:00"> 
+        <event care_site_id="123456" provider_id="112233" type="drug_exposure" code="RxNorm/745679" name="Albuterol Sulfate 90 mcg/actuation Inhaler">Prescribed for COPD management, 2 puffs as needed.</event> <event care_site_id="123456" provider_id="112233" type="drug_exposure" code="RxNorm/29046" name="Lisinopril 10 MG Oral Tablet">Prescribed for hypertension, 10 mg daily.</event> <event note_id="1000015" provider_id="112233" type="note" code="LOINC/11506-3" name="Medication Review Note">Reviewed current medications during tumor board referral preparation. Patient on Albuterol inhaler for COPD (as needed) and Lisinopril 10 mg daily for hypertension. No changes recommended at this time; continue alongside oncology treatments. No reported allergies or interactions with ongoing pembrolizumab and chemo.</event>
+      </entry>
+      <entry timestamp="2024-07-15 14:00:00">
+        <event care_site_id="345678" provider_id="778899" procedure_id="6000008" type="procedure" code="CPT/78815" name="Restaging PET/CT"></event>
+        <event note_id="1000013" provider_id="778899" type="note" code="LOINC/11537-8" name="Imaging Report">Restaging PET/CT: Stable left lower lobe mass (4.0 cm, SUV 12.4), persistent bone lesions with mild progression in rib. No new sites. Staging remains cT3N2M1b (Stage IV). Recommend tumor board review for therapy adjustment.</event>
+        <event type="observation" code="LOINC/2039-6" name="CEA Level">Value: 8.2 ng/mL</event>
+        <event type="observation" code="LOINC/57021-8" name="CBC Panel">WBC: 7.0 x10^3/uL, Hb: 12.2 g/dL, Plt: 200 x10^3/uL</event>
+      </entry>
+    </events>
+  </encounter>
+</eventstream>

@@ -1,0 +1,113 @@
+
+You are extracting a concise, structured list of clinical timeline events from the following EHR XML chunk.
+
+⚡ AGENTIC-PIPELINE CHANGE: This chunk is processed in **isolation** — you do NOT have access to events from other chunks of the same patient. Other chunks are running in parallel. A downstream unifier merges all chunks into a single timeline. Therefore the output is split into three keys:
+
+```
+{"events":[...], "before_chunk_mentions":[...], "background":{...}}
+```
+
+- **`events`** = events whose clinical occurrence date falls WITHIN OR AROUND this chunk's time window. Same schema as the original VISTA event below.
+- **`before_chunk_mentions`** = events explicitly referenced in this chunk's notes but clearly dated BEFORE this chunk's records (e.g., a 2024-05 note that mentions "patient had outside CT in March showing 3cm LUL mass" → extract the March CT here). SAME event schema. The unifier will reconcile these with first-hand events from earlier chunks and prefer earlier-chunk first-hand detail; your job here is to flag the reference so the unifier knows the event existed.
+- **`background`** = pre-cancer baseline facts mentioned in this chunk. Each chunk emits what it sees; the unifier consolidates across chunks into a single object. Schema:
+  ```
+  {"smoking": "Former, 30 pack-years, quit 2004-12-18" | "Never" | null,
+   "comorbidities": [...], "allergies": [...],
+   "family_history": [...], "prior_cancers": [...], "social_history": [...],
+   "prior_surgeries": [{"procedure": "R total knee replacement", "date": "2019" | "2019-05" | null, "context": "non-oncologic" | "prior cancer: gastric adenocarcinoma" | "current cancer" | null}, ...]
+  }
+  ```
+
+The `events` and `before_chunk_mentions` items use the original VISTA event schema:
+```
+{
+    "date": "YYYY-MM-DD",                 // clinical (valid) date
+    "evidence_date": "YYYY-MM-DD",        // first recorded date (if present)
+    "source_event_refs": ["E1", "E5"],    // REQUIRED: cite source events from reference list (e.g., ["E12", "E45"])
+    "type": "imaging|diagnostic|treatment|surgery|lab|symptom|examination|procedure|adverse_effect|baseline_information|critical_information",
+    "subtype": "optional string",
+    "modality": "ct|mri|xray|pet|pet-ct|ultrasound|other|null",
+    "site": "chest|head|neck|abdomen|pelvis|spine|bone|whole_body|other|null",
+    "description": "≤80 chars, compact and factual",
+    "priority": "MAJOR|MINOR",
+    "values": {"Hgb":"9.8↓", "WBC":"17.6↑"}   // only for labs when abnormal/decision-informing
+}
+```
+
+**IMPORTANT DISTINCTION - baseline_information vs critical_information:**
+- **baseline_information**: Pre-existing health background that predates this cancer diagnosis - smoking history, chronic diseases (diabetes, COPD, hepatitis), family history, allergies, prior cancers, occupational exposures. Extract these regardless of when documented (may appear in later notes as "patient reports 60 pack-year smoking history"). Surface them BOTH in `events` (type=baseline_information) AND in the `background` object — both representations are needed by downstream tools.
+- **critical_information**: Important clinical context documented DURING the disease course - code status changes (DNR/DNI), goals of care discussions, hospice transitions, bleeding risk factors, performance status at key decision points, prior external studies mentioned in notes.
+
+VARIABLE EXTRACTION TARGETS (collect exactly these when present)
+These targets are **fixed**; extract these variables in appropriate event types.
+
+Binary: Lymph Node Involvement, Distant Metastases, Pleural Effusion, Ever-smoker, Actionable Driver Mutation Present, Capsular Invasion, Mediastinal Pleura Involvement, Pericardial Invasion, Residual Disease Post-Resection, Liver Metastases Presence, Resectability, Brain Metastases, Mucosal Invasion, Extrapulmonary Extension, Mediastinal Involvement, Neoadjuvant Chemoradiotherapy Received, BAP1 Loss, Complete Resection (R0 Margins), Bone Marrow Involvement.
+
+Categorical: Histologic Subtype, TNM Stage (components only; **do not** classify full TNM here), Performance Status (ECOG), PD-L1 Expression Level, Histologic Type, Tumor Grade, Resection Status, Paraneoplastic Syndrome Type, Treatment Response, Masaoka-Koga Stage, Tumor Location, Grade/Differentiation.
+
+Discrete: Pack-Years Smoked, Tumor Size (cm), Number of Prior Treatment Lines, Number of Positive Lymph Nodes, Number of Involved Lymph Nodes, Number of Treatment Cycles, Number of Metastatic Sites.
+
+Continuous: CEA Level (ng/mL), Forced Expiratory Volume (FEV1 % predicted), Age (years), LDH Level (U/L), Hemoglobin (g/dL), Radiation Dose (Gy), Serum Creatinine (mg/dL), Albumin Level (g/dL).
+
+Genetics: Include mentions of EGFR, ALK, KRAS, PD-L1, ROS1, BRAF, MET, RET, NTRK, ERBB2 (HER2 mutations/overexpression), NRG1, and others if relevant, under `"diagnostic"` (or `"lab"` if truly a lab output).
+
+**CRITICAL - Extract prior/external studies mentioned in notes**: Some earlier events predating the oncological workup might only be mentioned as a part of the later summary notes. If a note mentions prior imaging or diagnostic tests, relevant to the oncological context/status, from another facility or earlier time period (e.g., "she had a brain MRI at outside ER which was negative", "prior PET scan from referring oncologist showed...", "CT at community hospital established baseline"), YOU MUST extract these as separate events. Use the correct event type based on the study: type "imaging" for imaging studies (CT, MRI, PET, X-ray) with appropriate modality/site fields, type "diagnostic" for biopsies/pathology, type "lab" for lab results. Mark outside/external studies clearly in the description with "(external)" or "(outside)" prefix (e.g., "CT chest (external): 3.8cm LUL mass"). Estimate the date (e.g., "late January" → use first date of current encounter) and note it was external/prior. Use type "critical_information" ONLY for non-study external context (e.g., external clinical assessments, prior goals-of-care discussions). **If the study clearly predates this chunk's window, place it in `before_chunk_mentions` instead of `events`.**
+
+**IMAGING DATE NAVIGATION**: If an IMAGING DATE VECTOR is provided in the graph-search context below, treat it as a programmatically-derived NAVIGATION MAP — NOT absolute ground truth. It is built from structured institutional procedure codes, which makes it accurate WHERE IT MATCHES real imaging studies, but the list:
+  - May be **incomplete**: outside/external imaging won't appear; some in-house imaging may be coded as a generic "radiology visit" rather than a specific procedure and thus may be missing.
+  - May contain **non-imaging entries**: generic radiology-clinic visits, billing entries, or coding-system artifacts can leak in and look like imaging when they're not.
+  - May contain entries that **need clinical interpretation**: a "Computed Tomography Guidance for Placement of Radiation Therapy Fields" code is technically a CT but clinically a radiation-planning step.
+
+Use the vector as a MAP: for each entry, look in the clinical text for a matching imaging study around that date. When you find one, use the vector date as the canonical procedure date (clinical notes are often written days later). When a vector date has NO matching clinical narrative, treat it skeptically — it may be a coding artifact or a non-imaging entry. When you find imaging in the clinical text that isn't in the vector (outside studies, ambiguous radiology visits, in-house studies the vector missed), still capture it as a timeline event — mark outside/external studies with "(external)" or "(outside)" in the description, and for in-house events that don't appear in the vector, just record them as ordinary imaging events.
+
+Apply to ALL imaging modalities — CT, MRI, PET-CT, X-ray, ultrasound, etc. — not just CT.
+
+**STRUCTURED RADIOLOGY VISITS (catch these — they are the biggest gap)**: When the chunk contains a `visit_detail` event with a radiology-clinic taxonomy code (e.g. "Ambulatory Radiology Clinic / Center" / NUCC 261QR0200X, "Diagnostic Radiology" / NUCC 2085R0202X, "Interventional Radiology" / NUCC 2085R0201X), or a `STANFORD_VISIT` whose detail tags it as Radiology — DO NOT skip it just because no modality code is attached. These are real imaging or interventional-radiology visits.
+  1. Use the surrounding notes/reports for that date to infer the modality (CT, PET-CT, MRI, X-ray, etc.).
+  2. If the surrounding text identifies the modality, emit it as `type=imaging` with that modality.
+  3. If the surrounding text identifies it as Interventional Radiology (biopsy, drain, port placement, etc.), emit as `type=procedure` with the actual procedure name, not as imaging.
+  4. If the modality is genuinely ambiguous from the surrounding text, still emit it as `type=imaging` with modality="other" and description prefixed "Radiology visit (modality unclear)" — this is far better than dropping the event entirely.
+  Roughly 25% of structured radiology visits in this cohort lack an explicit modality code; missing them produces dangerously stale "Date of Last CT" displays. Err on the side of capturing.
+
+Rules:
+- **PROVENANCE TRACKING (CRITICAL)**: For EVERY event you extract (in `events` OR `before_chunk_mentions`), you MUST cite the source event(s) from the reference list in the "source_event_refs" field. Use the [E1], [E2] tags shown in the SOURCE EVENTS section. If an event is mentioned in multiple notes/labs, include ALL relevant references (e.g., ["E5", "E12", "E34"]). This enables the unifier to merge mentions of the same underlying clinical fact across chunks.
+- Prefer the **most specific** clinical date; if only encounter date is known, use it.
+- Keep descriptions short; **do not** include boilerplate.
+- **IMPORTANT - Extract each study separately**: When a note summarizes multiple imaging/diagnostic studies (e.g., "PET-CT showed progression, MRI spine showed T8/L1 mets, CT chest showed effusion"), create a SEPARATE event for EACH study with its own modality, site, and findings. Do NOT lump them into one diagnostic summary.
+- **Extract adverse effects revealed by imaging**: If an imaging study reveals an adverse effect (vertebral collapse, pathological fracture, PE, bleeding, etc.), create TWO events: (1) the imaging event itself (type "imaging"), and (2) the adverse effect (type "adverse_effect") with the same date. **CRITICAL**: If imaging shows MULTIPLE adverse findings (e.g., "T8 and L1 compression"), create separate adverse_effect events for EACH vertebral level/site.
+- Diagnostics: Always include PET/CT, brain-MRI, biopsy/pathology dates; include **TNM components** (size, node counts, sites) compactly in descriptions.
+- Imaging: include key findings (progression/response, new mets, size changes).
+- Labs: include only **abnormal/decision-informing** values (↑/↓ markers).
+- Treatment: include drug/regimen and intent when clear (e.g., "Carbo/Pem/Pembro started, palliative"). Include start/end dates, line-of-therapy if stated.
+- Surgery: name and side/lobe if thoracic; margin if available (R0/R1/R2).
+- Adverse effects: include CTCAE grade if present and if it **affected** care.
+- **Baseline info** (smoking history, allergies, chronic comorbidities, family history, occupational exposures, prior cancers) → use type "baseline_information" in `events`, AND populate the corresponding field of the `background` object. These describe pre-existing conditions/background that predates this oncological diagnosis, regardless of when documented.
+- **SURGICAL HISTORY — LIST EVERY SURGERY YOU FIND**: PMH/PSH sections, intake notes, and consult notes often enumerate the patient's full surgical history (e.g., "PSH: right total knee replacement 2019, inguinal hernia repair x3, tonsillectomy as child, R carotid endarterectomy 2018, parotidectomy 2010"). You MUST capture ALL of these, however old or non-oncologic:
+  * If the surgery has a date within THIS chunk's window → emit it in `events` with type="surgery".
+  * If the surgery has a date BEFORE this chunk's window → emit it in `before_chunk_mentions` with type="surgery".
+  * In ALL cases (dated or undated, oncologic or not), ALSO add an entry to `background.prior_surgeries[]` so the display layer has the full surgical context regardless of chunk routing.
+  * The `context` tag tells the display whether it's for the CURRENT cancer, a PRIOR cancer, or non-oncologic — populate it whenever inferable from chart context.
+  * EXCLUDE only: biopsies (captured as diagnostics), bronchoscopy alone, FNA, port/mediport placement, dental/cataract/cosmetic procedures.
+- ⚡ AGENTIC-PIPELINE CHANGE: do NOT attempt to dedupe against events from other chunks — the unifier does that based on `source_event_refs` overlap. Emit faithfully what you see; duplicates across chunks will be merged downstream.
+
+**SAFETY AUGMENTATION (always include):**
+- **Major adverse events**: PE, DVT, thromboembolic events, sepsis, infections (pneumonia, bacteremia, etc.), bleeding/hemorrhage, respiratory failure, ICU admissions, code events, vertebral fractures/collapse, pathological fractures, skeletal complications → use type "adverse_effect".
+- **Bleeding risk factors**: Anticoagulation therapy, low platelets (thrombocytopenia), IVC filter placement, coagulopathy, elevated INR → capture as "critical_information" with date and context.
+- **Code status changes & goals of care** → use type "critical_information", subtype "code_status" or "goals_of_care".
+  - CRITICAL: When a note documents the patient's CURRENT code status (Full Code / DNR / DNI / Allow Natural Death / Comfort Measures Only / POLST results), capture the chart's literal text in the description. Do NOT summarize or paraphrase the patient's wishes.
+  - DISTINGUISH "documented current status" from "physician reflection / prior recommendation". Example: a note saying "code status discussion was had at end of last admission recommending DNR DNI; Current Code Status: Full Code (per 09/13/2024)" — the CURRENT status is Full Code; the DNR mention is a historical recommendation the patient declined. The description must capture the CURRENT status verbatim:  description="Code status: Full Code per POLST 09/13/2024 (prior DNR/DNI recommendation declined)".
+  - When chart explicitly records a POLST, quote it: description="POLST: full code, no DNR".
+  - When chart records a code status CHANGE (e.g., transition from Full Code to DNR), emit two events with both dates.
+  - Performance status snapshots (ECOG/KPS documented at decision points) → also use "critical_information" with subtype "ecog_snapshot".
+- **Initial diagnostic baseline**: All imaging and diagnostic tests from the initial diagnostic phase (even if normal) to establish comprehensive baseline. Also capture **oncologically relevant prior and external studies** mentioned in notes (e.g., brain MRI from ER ruling out mets, prior CT establishing disease-free status, baseline PET scans from referring facility) → use type "imaging" with appropriate modality/site and mark as "(external)" or "(outside)" in description. Estimate the date from context and note it was a prior/external study. **If the prior study clearly predates this chunk, route it to `before_chunk_mentions` rather than `events`.**
+
+Graph-search context (deterministic retrieval over the patient's MEDS Graph — same for all chunks of this patient):
+---
+{graph_context}
+---
+
+EHR XML chunk:
+----------------
+{chunk_text}
+
+Return ONLY the JSON object described at the top. No prose, no markdown fences.

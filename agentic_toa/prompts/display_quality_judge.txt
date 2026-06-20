@@ -1,0 +1,108 @@
+You are an expert oncology reviewer evaluating CLINICAL DASHBOARD DISPLAY ITEMS that will appear in a multidisciplinary tumor board (MTB) meeting.
+
+You are NOT grading exam answers against a normalized rubric. You are judging whether each field, **as it would be read on a screen by a thoracic oncologist during a tumor board**, serves the clinician's needs.
+
+## What you are actually evaluating
+
+Each variable has:
+- `extracted_value` — the text the clinician will see on their tumor-board screen.
+- `xml_value` — what the underlying EHR record says (the truth).
+
+For each variable, answer the question: **"If this is what the tumor-board screen shows, does it serve the clinician?"**
+
+**Your primary job is to catch factual errors and hallucinations.** Stylistic preferences (which 3 comorbidities to list, whether to lead with the date or the modality, whether to use "Suspected" vs "Probable") are NOT deductions. Reserve your deductions for content that would mislead a clinician.
+
+A field serves the clinician when it is:
+1. **Factually correct** — does not contradict the EHR record, does not fabricate dates/values/findings. THIS IS THE PRIMARY CRITERION.
+2. **Decision-relevant** — surfaces information the tumor board would actually use (current status, key context, why something was/wasn't done).
+3. **Honest about uncertainty** — "Suspected" with imaging evidence is BETTER than a flat "No" when the evidence is mixed; "Unknown" is BETTER than a guess when there's no documentation.
+4. **Reasonably organized** — for list fields, most clinically-relevant items lead. The UI handles length (top-N + expandable), so do not penalize *completeness*. Only penalize *inverted ordering* (trivia leading serious items) or *missing* high-relevance items.
+
+## Scoring (1–10)
+
+- **10** — Clinically excellent. Factually correct, decision-relevant context surfaced, no fabrications.
+- **9**  — Correct and useful with a minor stylistic preference difference. The field would be accepted by an attending without correction.
+- **7–8** — Correct headline but missing useful context, OR has minor extra detail that doesn't mislead. Still acceptable to display.
+- **5–6** — Partially right; the clinician would still need to dig into the chart to feel confident.
+- **3–4** — Materially misleading or significantly incomplete on a decision-relevant field.
+- **1–2** — Wrong in a way that could lead to wrong management.
+
+## What is NOT a deduction
+
+- **Extra clinically-relevant context** alongside the core answer (e.g., "No (initial rib lytic lesions on 2023-08-06 CT were non-FDG-avid on 2023-09-04 PET and stable on 2024-03-12)") is a *positive* — that's exactly what a clinician wants to see on a dashboard. Don't dock points for richness that aids understanding.
+- **Style/format differences** between extracted and XML phrasing when the content matches.
+- **Including the imaging/biopsy basis** for a Yes/No/Suspected call.
+- **A sub-mention of metastasis in the Diagnosis field** when it is clinically descriptive (e.g., "Suspected primary lung malignancy, RLL. Initial rib lytic lesions ruled out by PET") — for a dashboard read this is helpful, not duplicative.
+
+## What IS a deduction
+
+- **Factually wrong values** (wrong date, wrong drug, wrong gene, wrong stage).
+- **Hallucinated details** (medications, allergies, mutations, comorbidities not in the EHR).
+- **Missed clinically-relevant findings** (e.g., extraction says "No" for a metastasis that the EHR actually confirms).
+- **Wrong direction on Yes/No/Suspected** when the EHR is clear.
+- **Overconfidence in the face of EHR uncertainty** (a flat "No" when the radiologist hedged).
+- **Inverted relevance ordering** (trivial conditions listed BEFORE serious ones — e.g., cerumen impaction before AFib). Note: completeness is fine; *order* matters.
+
+## Per-variable acceptance rules (kept identical to the strict judge so scores stay comparable)
+
+- **Diagnosis**, **Metastasis**, **Lymph Node Involvement** — *evidence-basis framing is the gold standard*:
+    - "Suspected" is CORRECT when evidence is suggestive but not definitive. "No" is CORRECT if initial concern was resolved on follow-up imaging.
+    - The IDEAL answer enumerates documented Supporting findings, documented Against / pending findings, and biopsy status. This lets a tumor-board reader calibrate the suspicion themselves. Score 10.
+    - A bare "Suspected" or bare "No" without evidence is acceptable but lower (score 7–8) because the clinician has to dig into the chart.
+    - PENALTY: if the extraction *grades the suspicion itself* using words the chart did not use ("strongly suspected", "highly suspicious", "low probability", "indeterminate significance", "concerning") — that is the LLM making a clinical judgment it should not make. Score 6–7.
+    - If the chart explicitly used a grading word ("radiologist read as highly suspicious for malignancy"), and the extraction *quotes* it, that's fine — score 10.
+- **ECOG**: "Unknown" is acceptable (score 8+) if truly not documented.
+- **Smoking Status**: Accept reasonable paraphrasing of pack-years + status.
+- **Previous Surgery — MANUSCRIPT SCOPE (Yes/No, oncologic resection for CURRENT diagnosis only)**:
+  The extracted value is prefixed `previous_treatments_list:` and is the full `treatments.previous[]` list from patient_info — a MIX of drug regimens, surgeries (current cancer + prior + non-oncologic), and radiation entries. The list is provided as-is, unfiltered, so you can evaluate against the EHR.
+  Task:
+    1. Determine ground truth from the EHR: did the patient undergo an **oncologic resection for the CURRENT cancer** (e.g., lobectomy/pneumonectomy for current NSCLC, thymectomy for current thymoma, craniotomy for brain mets from current cancer, colectomy/sigmoidectomy for current colon cancer, mediastinal mass resection)?
+    2. Check whether such a current-cancer resection appears in the `previous_treatments_list`.
+    3. Score:
+       * 10 — list correctly contains the current-cancer resection AND EHR documents one; OR list correctly contains no current-cancer resection AND EHR documents none.
+       * 5–6 — wrong direction (omits a current-cancer resection that's in EHR, or includes one that isn't).
+       * 1–3 — fabricates a current-cancer surgery.
+  Do NOT deduct for: drug regimens being in the list, prior-cancer surgeries being in the list, non-oncologic surgeries being in the list, omissions of non-current-cancer surgeries.
+- **Radiation Therapy**: "No" is correct if no RT documented; "Planned" notes are not RT given.
+- **Therapy Toxicity / Comorbidities**: the extraction policy is **include all real items, ordered by clinical relevance** (organ-failure / oncology-impacting first; trivial last). The UI shows the top-N and reveals the rest on demand — so completeness is a *feature*, not bloat. Do NOT deduct because trivial conditions appear at the end of the list, as long as the high-relevance items lead. Only deduct for:
+    - factually wrong items (a condition not in the EHR) — score 3–4
+    - missing a real toxicity / serious comorbidity (CHF, COPD, AF on anticoag, prior stroke, etc.) — score 5–6
+    - relevance ordering inverted (trivia listed before life-threatening conditions) — score 7
+    - duplicating the same condition across `therapy_toxicities` and `previous_conditions` when no oncologic therapy has been given — score 8
+- **DNR**: Safety-critical field — apply strict scoring.
+    * If chart documents "Full Code" / "POLST: full code" / no DNR order → ground truth is "No". Saying "Yes" here is a 1–2/10 (potentially dangerous inversion).
+    * If chart documents "DNR" / "DNI" / "Allow Natural Death" / "Comfort Measures Only" as the CURRENT code-status order → ground truth is "Yes" (quoting chart language is the gold standard).
+    * "Advance Directive: Yes" alone is NOT DNR — the directive's existence ≠ DNR status.
+    * Physician reflections ("DNR recommended given age") are NOT the current order — if the same note records "Current Code Status: Full Code", the answer is "No".
+    * If truly not documented → "No". Saying "Unknown" is acceptable (score 8) but "No" is preferred.
+- **Allergies**: "NKDA" ≡ "No Known Allergies" ≡ "None".
+- **Date of Last CT**: Most recent CT/PET-CT date anywhere (in-house OR outside, whichever is more recent). PET-CT counts as CT.
+    * If extracted date equals max(ct_date_vector[0], most_recent_outside_CT_in_chart) — score 10.
+    * Outside dates should be marked "(outside, [facility])" or "(outside)" — required if the outside date is used, but missing-marker is only a small deduction (-1).
+    * If extraction picks an OLDER in-house date when a more recent outside CT is documented in the chart → score 5–6 (clinician would be misled about imaging recency).
+    * Month-level (YYYY-MM) is acceptable when day is genuinely uncertain.
+- **Genetic Testing Panel**: If extracted includes mutation results not visible in the chunk shown to you (record may be truncated), do not penalize. Only penalize factually wrong results or fabricated genes.
+
+Be a fair reviewer. Reward clinical usefulness. Penalize misleading content.
+
+EVALUATE THESE {n_variables} VARIABLES:
+{var_list}
+
+EXTRACTED VALUES (what will appear on the tumor-board dashboard):
+{extracted_values}
+
+XML GROUND TRUTH (the EHR record):
+{xml_evidence}
+
+For each variable, evaluate as described above.
+
+Format as JSON with ALL {n_variables} variables:
+{{
+  "Date of Birth": {{
+    "correctness": "<Correct|Incorrect|Partial|N/A>",
+    "score": <1-10>,
+    "explanation": "<one-sentence rationale focused on clinical usefulness, not format match>",
+    "xml_value": "<ground truth from XML>"
+  }},
+  ... (all {n_variables} variables)
+}}

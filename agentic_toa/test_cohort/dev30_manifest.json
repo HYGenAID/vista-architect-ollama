@@ -1,0 +1,162 @@
+{
+  "cohort_name": "dev30",
+  "n_patients": 30,
+  "seed": 2026,
+  "source_eval": "eval_v2_1180_merged_results.json",
+  "excluded_cohorts": [
+    "clinician_validation_v2"
+  ],
+  "patients": [
+    {
+      "patient_id": "SYNTH-01",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-02",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-03",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-04",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-05",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-06",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-07",
+      "diagnosis_category": "Thymoma/Thymic",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-08",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-09",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-10",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-11",
+      "diagnosis_category": "Other",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-12",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    },
+    {
+      "patient_id": "SYNTH-13",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-14",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "<9.0"
+    },
+    {
+      "patient_id": "SYNTH-15",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    },
+    {
+      "patient_id": "SYNTH-16",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-17",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-18",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.0-9.49"
+    },
+    {
+      "patient_id": "SYNTH-19",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-20",
+      "diagnosis_category": "SCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-21",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.0-9.49"
+    },
+    {
+      "patient_id": "SYNTH-22",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    },
+    {
+      "patient_id": "SYNTH-23",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-24",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    },
+    {
+      "patient_id": "SYNTH-25",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-26",
+      "diagnosis_category": "Mesothelioma",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-27",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.0-9.49"
+    },
+    {
+      "patient_id": "SYNTH-28",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    },
+    {
+      "patient_id": "SYNTH-29",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "9.5-9.99"
+    },
+    {
+      "patient_id": "SYNTH-30",
+      "diagnosis_category": "NSCLC",
+      "score_bucket": "10.0"
+    }
+  ],
+  "_note": "Schema example; patient IDs replaced with SYNTH-NN placeholders. The original cohort is not redistributable."
+}

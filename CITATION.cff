@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use VISTA Architect in your research, please cite our preprint."
+title: "VISTA Architect: A graph database-oriented health AI system demonstrated in multidisciplinary tumor boards"
+type: software
+authors:
+  - family-names: "Kiiskinen"
+    given-names: "Tuomo"
+  - family-names: "Fries"
+    given-names: "Jason"
+  - family-names: "Adamson"
+    given-names: "Philip"
+  - family-names: "Wu"
+    given-names: "David"
+  - family-names: "Ellis-Caleo"
+    given-names: "Timothy John"
+  - family-names: "Fanous"
+    given-names: "Aaron"
+  - family-names: "Narasimhan"
+    given-names: "Balasubramanian"
+  - family-names: "Neal"
+    given-names: "Joel"
+  - family-names: "Plevritis"
+    given-names: "Sylvia"
+  - family-names: "Rivas"
+    given-names: "Manuel A."
+version: "0.1.0"
+date-released: "2026-06-20"
+license: Apache-2.0
+repository-code: "https://github.com/VISTA-Stanford/vista-architect"
+keywords:
+  - clinical NLP
+  - knowledge graph
+  - tumor board
+  - large language model
+  - electronic health record
+preferred-citation:
+  type: article
+  title: "VISTA Architect: A graph database-oriented health AI system demonstrated in multidisciplinary tumor boards"
+  authors:
+    - family-names: "Kiiskinen"
+      given-names: "Tuomo"
+    - family-names: "Rivas"
+      given-names: "Manuel A."
+  year: 2026
+  # Add DOI / arXiv ID once the preprint is posted.
+  doi: "10.XXXX/XXXXXXX"

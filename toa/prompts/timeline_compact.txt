@@ -1,0 +1,67 @@
+
+You are extracting a concise, structured list of clinical timeline events from the following EHR XML chunk.
+Return **valid JSON** with the shape:
+{"events":[
+  {
+    "date": "YYYY-MM-DD",                 // clinical (valid) date
+    "evidence_date": "YYYY-MM-DD",        // first recorded date (if present)
+    "source_event_refs": ["E1", "E5"],    // REQUIRED: cite source events from reference list (e.g., ["E12", "E45"])
+    "type": "imaging|diagnostic|treatment|surgery|lab|symptom|examination|procedure|adverse_effect|baseline_information|critical_information",
+    "subtype": "optional string",
+    "modality": "ct|mri|xray|pet|pet-ct|ultrasound|other|null",
+    "site": "chest|head|neck|abdomen|pelvis|spine|bone|whole_body|other|null",
+    "description": "≤80 chars, compact and factual",
+    "priority": "MAJOR|MINOR",
+    "values": {"Hgb":"9.8↓", "WBC":"17.6↑"}   // only for labs when abnormal/decision-informing
+  }
+]}
+
+**IMPORTANT DISTINCTION - baseline_information vs critical_information:**
+- **baseline_information**: Pre-existing health background that predates this cancer diagnosis - smoking history, chronic diseases (diabetes, COPD, hepatitis), family history, allergies, prior cancers, occupational exposures. Extract these regardless of when documented (may appear in later notes as "patient reports 60 pack-year smoking history").
+- **critical_information**: Important clinical context documented DURING the disease course - code status changes (DNR/DNI), goals of care discussions, hospice transitions, bleeding risk factors, performance status at key decision points, prior external studies mentioned in notes.
+
+VARIABLE EXTRACTION TARGETS (collect exactly these when present)
+These targets are **fixed**; extract these variables in appropriate event types.
+
+Binary: Lymph Node Involvement, Distant Metastases, Pleural Effusion, Ever-smoker, Actionable Driver Mutation Present, Capsular Invasion, Mediastinal Pleura Involvement, Pericardial Invasion, Residual Disease Post-Resection, Liver Metastases Presence, Resectability, Brain Metastases, Mucosal Invasion, Extrapulmonary Extension, Mediastinal Involvement, Neoadjuvant Chemoradiotherapy Received, BAP1 Loss, Complete Resection (R0 Margins), Bone Marrow Involvement.
+
+Categorical: Histologic Subtype, TNM Stage (components only; **do not** classify full TNM here), Performance Status (ECOG), PD-L1 Expression Level, Histologic Type, Tumor Grade, Resection Status, Paraneoplastic Syndrome Type, Treatment Response, Masaoka-Koga Stage, Tumor Location, Grade/Differentiation.
+
+Discrete: Pack-Years Smoked, Tumor Size (cm), Number of Prior Treatment Lines, Number of Positive Lymph Nodes, Number of Involved Lymph Nodes, Number of Treatment Cycles, Number of Metastatic Sites.
+
+Continuous: CEA Level (ng/mL), Forced Expiratory Volume (FEV1 % predicted), Age (years), LDH Level (U/L), Hemoglobin (g/dL), Radiation Dose (Gy), Serum Creatinine (mg/dL), Albumin Level (g/dL).
+
+Genetics: Include mentions of EGFR, ALK, KRAS, PD-L1, ROS1, BRAF, MET, RET, NTRK, ERBB2 (HER2 mutations/overexpression), NRG1, and others if relevant, under `"diagnostic"` (or `"lab"` if truly a lab output).
+
+**CRITICAL - Extract prior/external studies mentioned in notes**: Some earlier events predating the oncological workup might only be mentioned as a part of the later summary notes. If a note mentions prior imaging or diagnostic tests, relevant to the oncological context/status, from another facility or earlier time period (e.g., "she had a brain MRI at outside ER which was negative", "prior PET scan from referring oncologist showed...", "CT at community hospital established baseline"), YOU MUST extract these as separate events. Use the correct event type based on the study: type "imaging" for imaging studies (CT, MRI, PET, X-ray) with appropriate modality/site fields, type "diagnostic" for biopsies/pathology, type "lab" for lab results. Mark outside/external studies clearly in the description with "(external)" or "(outside)" prefix (e.g., "CT chest (external): 3.8cm LUL mass"). Estimate the date (e.g., "late January" → use first date of current encounter) and note it was external/prior. Use type "critical_information" ONLY for non-study external context (e.g., external clinical assessments, prior goals-of-care discussions).
+
+**IMAGING DATE GROUNDING**: If an IMAGING DATE VECTOR is provided above, follow these rules strictly:
+1. **Ground truth**: The vector contains confirmed imaging procedure dates and modalities from structured institutional records. These are the actual dates the studies were performed — use them as-is.
+2. **Clinical notes may differ**: A clinical note discussing imaging findings may have a different date than the procedure itself (e.g., the note is written the next day, or a radiology report is finalized days later). Always use the PROCEDURE date from the vector, not the note/report date.
+3. **Radiology reports**: A radiology report's own timestamp may differ from the study date. When a report discusses findings from a study, infer which vector entry it corresponds to (nearest matching modality+date) and use that vector date for the imaging event.
+4. **Outside/external imaging**: Studies performed at referring hospitals or outside facilities will NOT appear in the vector. Extract those dates from the clinical text as-is and mark them clearly in the description with "(external)" or "(outside)". If only approximate dates are available (e.g., "CT from April"), use the best estimate.
+5. **All modalities**: This applies to ALL imaging types — CT, MRI, PET-CT, X-ray, ultrasound, etc. — not just CT.
+
+Rules:
+- **PROVENANCE TRACKING (CRITICAL)**: For EVERY event you extract, you MUST cite the source event(s) from the reference list in the "source_event_refs" field. Use the [E1], [E2] tags shown in the SOURCE EVENTS section. If an event is mentioned in multiple notes/labs, include ALL relevant references (e.g., ["E5", "E12", "E34"]). This enables tracing each clinical fact back to its exact source in the EHR.
+- Prefer the **most specific** clinical date; if only encounter date is known, use it.
+- Keep descriptions short; **do not** include boilerplate.
+- **IMPORTANT - Extract each study separately**: When a note summarizes multiple imaging/diagnostic studies (e.g., "PET-CT showed progression, MRI spine showed T8/L1 mets, CT chest showed effusion"), create a SEPARATE event for EACH study with its own modality, site, and findings. Do NOT lump them into one diagnostic summary.
+- **Extract adverse effects revealed by imaging**: If an imaging study reveals an adverse effect (vertebral collapse, pathological fracture, PE, bleeding, etc.), create TWO events: (1) the imaging event itself (type "imaging"), and (2) the adverse effect (type "adverse_effect") with the same date. **CRITICAL**: If imaging shows MULTIPLE adverse findings (e.g., "T8 and L1 compression"), create separate adverse_effect events for EACH vertebral level/site.
+- Diagnostics: Always include PET/CT, brain-MRI, biopsy/pathology dates; include **TNM components** (size, node counts, sites) compactly in descriptions.
+- Imaging: include key findings (progression/response, new mets, size changes).
+- Labs: include only **abnormal/decision-informing** values (↑/↓ markers).
+- Treatment: include drug/regimen and intent when clear (e.g., "Carbo/Pem/Pembro started, palliative"). Include start/end dates, line-of-therapy if stated.
+- Surgery: name and side/lobe if thoracic; margin if available (R0/R1/R2).
+- Adverse effects: include CTCAE grade if present and if it **affected** care.
+- **Baseline info** (smoking history, allergies, chronic comorbidities, family history, occupational exposures, prior cancers) → use type "baseline_information". These describe pre-existing conditions/background that predates this oncological diagnosis, regardless of when documented.
+
+**SAFETY AUGMENTATION (always include):**
+- **Major adverse events**: PE, DVT, thromboembolic events, sepsis, infections (pneumonia, bacteremia, etc.), bleeding/hemorrhage, respiratory failure, ICU admissions, code events, vertebral fractures/collapse, pathological fractures, skeletal complications → use type "adverse_effect".
+- **Bleeding risk factors**: Anticoagulation therapy, low platelets (thrombocytopenia), IVC filter placement, coagulopathy, elevated INR → capture as "critical_information" with date and context.
+- **Code status changes & goals of care**: DNR, DNI, full code, comfort care, hospice discussions, care limitation orders, goals of care changes, performance status snapshots (ECOG/KPS documented at specific decision points) → use type "critical_information". These are important clinical context documented during the disease course, NOT baseline background.
+- **Initial diagnostic baseline**: All imaging and diagnostic tests from the initial diagnostic phase (even if normal) to establish comprehensive baseline. Also capture **oncologically relevant prior and external studies** mentioned in notes (e.g., brain MRI from ER ruling out mets, prior CT establishing disease-free status, baseline PET scans from referring facility) → use type "imaging" with appropriate modality/site and mark as "(external)" or "(outside)" in description. Estimate the date from context and note it was a prior/external study.
+
+EHR XML chunk:
+----------------
+{xml_chunk}

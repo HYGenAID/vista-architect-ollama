@@ -1,0 +1,7 @@
+{
+  "pid": "136009359",
+  "rationale": "Selected from dev30 for the Phase 1 single-patient smoke test. NSCLC, score 9.69 on the existing pipeline (16-variable mean), 172 events across 2020-11-27..2024-03-13 (rich enough to exercise chunking + unification, not so massive that iteration is slow). Existing-pipeline outputs in temp_jsons/136009359/ are the A/B baseline.",
+  "chosen_on": "2026-05-27",
+  "patient_id": "SYNTH-00",
+  "_note": "Schema example; patient ID is a placeholder."
+}

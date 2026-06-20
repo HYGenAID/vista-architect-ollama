@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vista-architect"
+version = "0.1.0"
+description = "Graph-database-oriented health AI for multidisciplinary tumor boards"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+authors = [
+    {name = "The VISTA Architect Authors"},
+]
+keywords = ["clinical NLP", "knowledge graph", "tumor board", "LLM", "EHR"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+
+# Base deps — enough to run the deterministic backend + any one LLM backend.
+dependencies = [
+    "networkx>=3.0",
+    "python-dotenv>=1.0",
+    "pydantic>=2.0",
+    "openai>=1.0",
+    "anthropic>=0.40",
+    "google-genai>=1.0",
+]
+
+[project.optional-dependencies]
+agentic = [
+    "anthropic[vertex]>=0.40",
+]
+eval = [
+    "scipy>=1.11",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+]
+rag = [
+    "rank-bm25>=0.2.2",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/VISTA-Stanford/vista-architect"
+Repository = "https://github.com/VISTA-Stanford/vista-architect"
+
+[tool.setuptools.packages.find]
+include = ["vista_llm*", "toa*", "agentic_toa*"]
+exclude = ["tests*", "docs*", "examples*"]

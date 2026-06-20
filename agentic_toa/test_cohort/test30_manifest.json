@@ -1,0 +1,158 @@
+{
+  "cohort_name": "test30",
+  "n_patients": 30,
+  "source": "clinician_validation_v2/_pid_mapping.json",
+  "patients": [
+    {
+      "patient_id": "SYNTH-01",
+      "case_label": "Case 01",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-02",
+      "case_label": "Case 02",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-03",
+      "case_label": "Case 03",
+      "diagnosis_category": "Mesothelioma"
+    },
+    {
+      "patient_id": "SYNTH-04",
+      "case_label": "Case 04",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-05",
+      "case_label": "Case 05",
+      "diagnosis_category": "Thymoma/Thymic"
+    },
+    {
+      "patient_id": "SYNTH-06",
+      "case_label": "Case 06",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-07",
+      "case_label": "Case 07",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-08",
+      "case_label": "Case 08",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-09",
+      "case_label": "Case 09",
+      "diagnosis_category": "Thymoma/Thymic"
+    },
+    {
+      "patient_id": "SYNTH-10",
+      "case_label": "Case 10",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-11",
+      "case_label": "Case 11",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-12",
+      "case_label": "Case 12",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-13",
+      "case_label": "Case 13",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-14",
+      "case_label": "Case 14",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-15",
+      "case_label": "Case 15",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-16",
+      "case_label": "Case 16",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-17",
+      "case_label": "Case 17",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-18",
+      "case_label": "Case 18",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-19",
+      "case_label": "Case 19",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-20",
+      "case_label": "Case 20",
+      "diagnosis_category": "SCLC"
+    },
+    {
+      "patient_id": "SYNTH-21",
+      "case_label": "Case 21",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-22",
+      "case_label": "Case 22",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-23",
+      "case_label": "Case 23",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-24",
+      "case_label": "Case 24",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-25",
+      "case_label": "Case 25",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-26",
+      "case_label": "Case 26",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-27",
+      "case_label": "Case 27",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-28",
+      "case_label": "Case 28",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-29",
+      "case_label": "Case 29",
+      "diagnosis_category": "NSCLC"
+    },
+    {
+      "patient_id": "SYNTH-30",
+      "case_label": "Case 30",
+      "diagnosis_category": "NSCLC"
+    }
+  ],
+  "_note": "Schema example; patient IDs replaced with SYNTH-NN placeholders. The original cohort is not redistributable."
+}

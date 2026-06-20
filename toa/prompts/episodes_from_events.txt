@@ -1,0 +1,348 @@
+SYSTEM GOAL
+You will segment a de-noised stream of clinical timeline objects into clinically meaningful EPISODES.
+
+For THORACIC TUMOR BOARD patients, episodes are built around TREATMENT LINES as the primary structure,
+with imaging, diagnostics, symptoms, and labs providing context within each line.
+
+SIMPLIFIED EPISODE STRUCTURE
+Episodes represent natural phases of the patient's oncological journey:
+
+1. BASELINE: Background information predating the current oncological disease
+   - Prior cancers, chronic comorbidities (diabetes, COPD, hepatitis), smoking history, family history, allergies, occupational exposures
+   - **IMPORTANT**: These will be automatically populated from ALL baseline_information events, regardless of when documented (may appear in later notes as "patient reports...")
+   - Anchor: one day before the first oncological event
+   - Note: Goals of care (DNR/DNI) documented later are NOT baseline - they're critical_information events within treatment episodes
+
+2. INITIAL DIAGNOSIS: Diagnostic workup leading to treatment decision
+   - Initial symptoms prompting evaluation
+   - All diagnostic imaging (CT, PET-CT, MRI, etc.)
+   - Biopsies, pathology, molecular testing
+   - Ends when first treatment decision is made
+   - Anchor: specialist visit (if it precedes diagnostics and workup is programmed there) OR first diagnostic imaging or biopsy
+
+3. TREATMENT LINES: Each line of therapy until change is needed
+   - Includes all components: systemic therapy, surgery, radiation as planned
+   - Contains all imaging, labs, symptoms during the line
+   - Continues until: progression, no effect, adverse effects, planned completion
+   - **CRITICAL**: Include the event that CAUSES the line to end (progression imaging, adverse event, completion assessment) IN THIS EPISODE, not the next
+   - Ends when treatment changes or new line begins
+   - Anchor: treatment start date
+
+4. POST-ONCOLOGICAL CARE: Transition out of active oncological treatment
+   - Hospice transition, palliative care only, comfort measures
+   - End-of-life care decisions, DNR/DNI status changes
+   - When oncological treatment is terminated
+   - Anchor: date of transition decision or hospice enrollment
+
+TREATMENT LINE PHILOSOPHY
+A treatment line episode represents a coherent treatment strategy:
+- First-line might include: neoadjuvant chemo → surgery → adjuvant therapy (if planned together)
+- Line continues through planned surveillance and response assessments
+- Line ENDS when: disease progresses, toxicity forces change, treatment fails, or planned therapy completes
+- The imaging/lab/adverse event that shows WHY the line ended stays in that line's episode
+- Imaging is context within the line, not an episode boundary
+
+INPUTS
+1) events_lite: JSON array of events sorted by date. Fields per event:
+   {
+     "idx": int,
+     "event_id": str,
+     "date": "YYYY-MM-DD",
+     "type": "imaging|diagnostic|treatment|surgery|lab|symptom|examination|procedure|adverse_effect|critical_information",
+     "description": "≤160 chars",
+     "priority": "MAJOR|MINOR",
+     "modality": null|"ct"|"mri"|"xray"|"pet"|"pet-ct"|"ultrasound",
+     "site": null|"chest"|"head"|"neck"|"abdomen"|"pelvis"|"spine"|"bone"|"whole_body"
+   }
+
+2) hints: JSON object with code-generated change-points:
+   {
+     "imaging_anchors": [
+       {
+         "idx": int,
+         "event_id": str,
+         "date": "YYYY-MM-DD",
+         "modality": "ct"|"pet-ct"|...,
+         "site": "chest"|"bone"|...,
+         "category": "baseline"|"response"|"progression"|"surveillance",
+         "reason": "ct chest: progression",
+         "suggested_group": null  # ASSIGN semantic groups to imaging studies that are temporally close (≤7 days apart)
+       },
+       ...
+     ],
+     "context_events": [
+       {"idx": int, "event_id": str, "date": "YYYY-MM-DD", "type": "treatment"|..., "attach_to": "nearest_imaging_before"},
+       ...
+     ],
+     "rules": {
+       "thoracic_specific": true,
+       "anchor_type": "imaging_studies",
+       "group_context_window_days": 90
+     }
+   }
+
+3) profile_rules: thoracic tumor board specific guidance
+
+EPISODE KINDS
+- baseline: Background information predating oncological disease
+- diagnosis: Initial diagnostic workup leading to treatment decision
+- treatment_line: Line of therapy (systemic, surgery, radiation as planned)
+- post_oncological: Hospice, palliative care only, end of active treatment
+
+TREATMENT-LINE-SPECIFIC RULES
+1. **Baseline Episode:**
+   - Will automatically include ALL baseline_information events (regardless of documentation date)
+   - Set anchor date to one day before the first oncological event
+   - Covers: smoking history, prior cancers, chronic diseases, family history, allergies, occupational exposures
+   - Does NOT include: DNR/DNI, goals of care, or performance status snapshots (those are critical_information in later episodes)
+
+2. **Diagnosis Episode:**
+   - Starts with first symptom OR specialist visit where workup is ordered
+   - Includes ALL diagnostic procedures: imaging (CT, PET-CT, MRI, etc.), biopsies, pathology, molecular testing
+   - Ends when treatment decision is made (NOT when treatment starts)
+   - Anchor: specialist visit if it precedes diagnostics, otherwise first diagnostic imaging/biopsy
+
+3. **Treatment Line Episodes:**
+   - Each line starts when new treatment strategy begins
+   - Include ALL events during the line: medications, procedures, imaging, labs, symptoms, adverse events
+   - **CRITICAL BOUNDARY RULE**: The event that ENDS the line (progression imaging, toxicity, completion) stays IN that line
+   - Next line begins with the new treatment decision/start
+   - Track line_number sequentially (1, 2, 3, ...)
+   - Capture treatment intent: curative, adjuvant, neoadjuvant, palliative
+   - Capture reason for line ending: progression, toxicity, completion, no_effect
+
+4. **Post-Oncological Episode:**
+   - Begins when active oncological treatment is discontinued
+   - Includes hospice enrollment, comfort care only, DNR/DNI changes
+   - All subsequent events belong to this episode
+
+INVARIANTS (STRICT - VALIDATOR WILL CHECK)
+- Use ONLY dates and event_ids from events_lite. Do NOT invent.
+- Episodes must be time-monotonic: start_date ≤ end_date
+- anchor_event_id MUST exist in events_lite (except baseline which can use synthetic date)
+- Max episodes: 20 (baseline + diagnosis + treatment lines + post-oncological)
+- For baseline episodes:
+  * Include ALL events describing pre-existing conditions regardless of documentation date
+  * Set anchor to one day before first oncological event
+- For diagnosis episodes:
+  * Include ALL diagnostic events until treatment decision
+  * Anchor should be specialist visit or first diagnostic procedure
+- For treatment_line episodes:
+  * Must include line_number, treatment, intent
+  * clinical_context must describe treatment and outcome/course
+  * Event that ENDS the line (progression, toxicity, completion) belongs to THIS episode
+  * termination_reason should reflect why line ended
+
+OUTPUT FORMAT (STRICT JSON)
+Return ONLY valid JSON in a single code block, no commentary:
+
+IMPORTANT: Do NOT include "event_ids" arrays in your output. Events will be automatically assigned based on date ranges.
+
+{
+  "episodes": [
+    {
+      "episode_id": "temp",
+      "kind": "baseline",
+      "start_date": "YYYY-MM-DD",
+      "end_date": "YYYY-MM-DD",
+      "anchor_event_id": "synthetic_baseline",
+      "clinical_context": "Summary of pre-existing conditions and background"
+    },
+    {
+      "episode_id": "temp",
+      "kind": "diagnosis",
+      "start_date": "YYYY-MM-DD",
+      "end_date": "YYYY-MM-DD",
+      "anchor_event_id": "<specialist visit or first diagnostic event_id>",
+      "clinical_context": "Diagnostic workup summary and final diagnosis"
+    },
+    {
+      "episode_id": "temp",
+      "kind": "treatment_line",
+      "start_date": "YYYY-MM-DD",
+      "end_date": "YYYY-MM-DD",
+      "anchor_event_id": "<treatment start event_id>",
+      "line_number": 1,
+      "treatment": "carboplatin/pemetrexed/pembrolizumab",
+      "intent": "curative"|"adjuvant"|"neoadjuvant"|"palliative"|null,
+      "clinical_context": "Treatment given + response (e.g., 'Carbo/Pem/Pembro: CTs show response, well-tolerated' OR 'Carbo/Pem/Pembro: progression on imaging, switched to next line')",
+      "termination_reason": null|"progression"|"toxicity"|"completion"|"no_effect"
+    },
+    {
+      "episode_id": "temp",
+      "kind": "post_oncological",
+      "start_date": "YYYY-MM-DD",
+      "end_date": null,
+      "anchor_event_id": "<hospice/comfort care event_id>",
+      "clinical_context": "Transition to hospice/comfort care"
+    },
+    ...
+  ],
+  "notes": [
+    "Created baseline episode with pre-diagnosis background",
+    "Treatment line 1 (pembro+carbo) showed partial response, completed as planned",
+    "..."
+  ]
+}
+
+AUTOMATED EVENT ASSIGNMENT:
+After you return episodes with just dates, the system will automatically populate event_ids:
+- For baseline: All baseline_information type events (regardless of date) - smoking, chronic diseases, family history, prior cancers
+- For diagnosis/treatment_line/post_oncological: All events where start_date <= event.date <= end_date
+
+VALIDATION HINTS
+- If you cannot satisfy a constraint, choose the most conservative segmentation
+- Explain deviations in notes[]
+- If imaging_anchors are sparse, fall back to treatment/diagnostic anchors
+- Prefer clinical coherence over strict time windows
+
+EXAMPLE (THORACIC NSCLC PATIENT - TREATMENT-LINE-BASED)
+
+Input events timeline:
+  - 2022-01-20: critical_info (60 pack-year smoking history, COPD, HTN)
+  - 2022-02-10: symptom (persistent cough, chest pain)
+  - 2022-02-15: examination (pulmonologist visit, orders workup)
+  - 2022-02-18: imaging CT chest (3cm LUL mass)
+  - 2022-03-10: imaging PET-CT (hypermetabolic, no distant mets)
+  - 2022-03-12: diagnostic (biopsy: adenocarcinoma, EGFR wild-type, PD-L1 50%)
+  - 2022-04-18: surgery (left upper lobectomy, R0 resection)
+  - 2022-04-25: imaging CT chest (post-op, no complications)
+  - 2022-06-15: imaging CT chest (surveillance, clear)
+  - 2023-11-15: imaging CT chest (new 2.5cm LLL nodule - recurrence)
+  - 2023-11-20: diagnostic (biopsy confirms recurrence)
+  - 2024-01-08: imaging PET-CT (6.5cm mass, bone mets T8/L1)
+  - 2024-01-15: treatment (start carboplatin/pemetrexed/pembrolizumab)
+  - 2024-03-20: imaging CT chest (mild response, 5.2cm)
+  - 2024-05-10: imaging CT chest (4.2cm - partial response)
+  - 2024-07-15: imaging PET-CT (stable 4cm lung, new bone progression)
+  - 2024-07-20: treatment (switch to docetaxel)
+  - 2024-09-10: imaging CT chest (further progression 5.8cm)
+  - 2024-09-15: critical_info (goals of care discussion, opts for comfort)
+  - 2024-09-20: treatment (hospice enrollment)
+
+Output episodes (NOTE: event_ids omitted - will be auto-populated by date range):
+  Episode 1: baseline
+    - kind: baseline
+    - start_date: 2022-02-09 (one day before first oncological event)
+    - end_date: 2022-02-09
+    - anchor_event_id: synthetic_baseline
+    - clinical_context: "60 pack-year smoker, COPD, hypertension"
+
+  Episode 2: diagnosis
+    - kind: diagnosis
+    - start_date: 2022-02-10
+    - end_date: 2022-04-17
+    - anchor_event_id: pulmonologist_visit_2022-02-15
+    - clinical_context: "Cough/chest pain → CT shows 3cm LUL mass → PET-CT staged → biopsy confirms adenocarcinoma EGFR-WT PD-L1 50%"
+
+  Episode 3: treatment_line
+    - kind: treatment_line
+    - line_number: 1
+    - start_date: 2022-04-18
+    - end_date: 2023-11-14
+    - anchor_event_id: lobectomy_2022-04-18
+    - treatment: "left upper lobectomy"
+    - intent: "curative"
+    - clinical_context: "LUL lobectomy with R0 resection: post-op clear, surveillance stable until recurrence detected"
+    - termination_reason: "progression"
+
+  Episode 4: treatment_line
+    - kind: treatment_line
+    - line_number: 2
+    - start_date: 2024-01-15
+    - end_date: 2024-07-19
+    - anchor_event_id: carbo_pem_pembro_start_2024-01-15
+    - treatment: "carboplatin/pemetrexed/pembrolizumab"
+    - intent: "palliative"
+    - clinical_context: "Carbo/Pem/Pembro for recurrent disease with bone mets: initial partial response (6.5→4.2cm), then bone progression on PET"
+    - termination_reason: "progression"
+
+  Episode 5: treatment_line
+    - kind: treatment_line
+    - line_number: 3
+    - start_date: 2024-07-20
+    - end_date: 2024-09-14
+    - anchor_event_id: docetaxel_start_2024-07-20
+    - treatment: "docetaxel"
+    - intent: "palliative"
+    - clinical_context: "Docetaxel second-line: progressive disease (5.8cm), patient opts for comfort care"
+    - termination_reason: "no_effect"
+
+  Episode 6: post_oncological
+    - kind: post_oncological
+    - start_date: 2024-09-15
+    - end_date: null
+    - anchor_event_id: goals_of_care_2024-09-15
+    - clinical_context: "Transitioned to hospice care after progressive disease on second-line therapy"
+
+ADDITIONAL INPUTS (may or may not be provided)
+
+4) source_text: The final chunk of clinical text (XML or graph-serialized), providing full context for patient demographics, tumor information, and treatment details. Use this to extract patient_state (see below).
+
+5) deterministic_context: Graph search hits highlighting key clinical variables found in the EHR (metastasis mentions, driver mutations, ECOG, smoking, radiation therapy, toxicities, drug exposures). Use these to guide your attention when populating patient_state fields.
+
+6) ct_date_vector: List of confirmed CT/PET-CT study dates from THIS INSTITUTION's structured records (internal imaging only). Format: ["2024-07-15", "2024-05-10", "2024-03-20", ...]
+   - For internal CT/PET-CT events, use these exact dates (they are ground truth from structured data).
+   - Outside/external imaging (done at referring hospitals) will NOT appear in this vector. Extract outside imaging dates from clinical notes in source_text instead, and mark them as outside studies (e.g., "Outside NC-CT Chest 2024-04-17"). Outside dates may be approximate (e.g., "CT from April" → use "2024-04" with no day).
+   - Both internal and outside CT/PET-CT count as valid imaging for clinical purposes.
+
+PATIENT STATE OUTPUT (REQUIRED when source_text is provided)
+
+When source_text is provided, you MUST add a "patient_state" object on the LAST episode in the episodes array. This captures the patient's current clinical state at the time of the last episode.
+
+The patient_state schema:
+
+"patient_state": {
+  "name": "Patient Name",
+  "date_of_birth": "YYYY-MM-DD",
+  "sex": "Male" | "Female" | "Other",
+  "height_cm": integer or null,
+  "weight_kg": integer or null,
+  "ecog_performance_status": 0-4 or "Unknown" (ONLY if explicitly stated as ECOG or KPS in notes),
+  "previous_conditions": "COPD, hypertension, stroke (2011)",
+  "therapy_toxicities": "Grade 3 pneumonitis, COPD" or "None",
+  "allergies": ["drug1", "drug2"],
+  "smoking_history": "Former, 40 pack-years, quit 2015" or "Never smoker" or "Unknown",
+  "medications": [{"name": "...", "dose": "...", "frequency": "..."}],
+  "dnr": "Yes" or "No",
+  "diagnosis": "NSCLC, right upper lobe. Metastasis (bone, brain).",
+  "tnm_staging": "cT4N2M1b",
+  "histology": "Adenocarcinoma",
+  "metastasis_status": "Yes (bone, liver)" or "Suspected" or "No",
+  "lymph_node_involvement": "Yes" or "Suspected" or "No",
+  "driver_mutations": {"EGFR": "L858R", "ALK": "Negative", "PD-L1": "80% (22C3)", ...},
+  "latest_updates": ["Most recent disease status", "Current clinical situation", "TB question if stated"],
+  "current_treatment": ["Drug1+Drug2 (start date: YYYY-MM-DD)"],
+  "previous_treatment": [
+    "Drug1+Drug2 (YYYY-MM-DD to YYYY-MM-DD, response, reason stopped)",
+    "Procedure name (YYYY-MM-DD, outcome)"
+  ],
+  "radiation_therapy": "Yes (SBRT to RUL, 2024-03)" or "No",
+  "surgical_candidate": {"eligible": true/false, "description": "brief reasoning including metastatic sites if not eligible"},
+  "date_of_last_ct": "YYYY-MM-DD" or "YYYY-MM" (if only month known, e.g. outside imaging)
+}
+
+PATIENT STATE RULES:
+- Derive treatment history from the episodes you just created: previous[] = completed treatment_line episodes, current[] = latest active treatment
+- Cross-reference source_text and deterministic_context for demographics, tumor details, mutations
+- For ECOG: ONLY report a number if explicitly documented (e.g., "ECOG 1", "KPS 80"). If not documented, use "Unknown"
+- For driver_mutations: report "Not tested" if gene not mentioned, "Negative"/"Not detected" if tested negative
+- For date_of_last_ct: Report the most recent CT or PET-CT date regardless of whether it is internal or outside. Decision priority:
+    1. If ct_date_vector is provided AND source_text mentions no later outside CT → use ct_date_vector[0] (exact date, YYYY-MM-DD)
+    2. If source_text mentions a more recent outside CT than ct_date_vector[0] → use the outside date. If only month is known, use "YYYY-MM". Mark as "(outside)" in latest_updates.
+    3. If ct_date_vector is empty → extract from source_text (may be approximate, use "YYYY-MM" if day unknown)
+- Use established medical abbreviations (NSCLC, COPD, T2D, etc.)
+- If patient name is unclear (de-identification), use "John Doe" (male) or "Jane Doe" (female)
+
+UPDATED OUTPUT FORMAT (when source_text is provided):
+{
+  "episodes": [
+    { ... episode 1 ... },
+    { ... episode 2 ... },
+    {
+      ... last episode ...,
+      "patient_state": { ... see schema above ... }
+    }
+  ],
+  "notes": ["...", "..."]
+}

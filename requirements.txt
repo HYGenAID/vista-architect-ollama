@@ -1,0 +1,22 @@
+# Core (deterministic backend + at least one LLM backend)
+networkx>=3.0
+python-dotenv>=1.0
+pydantic>=2.0
+openai>=1.0
+anthropic>=0.40
+google-genai>=1.0
+
+# RAG baseline
+rank-bm25>=0.2.2
+
+# Evaluation
+scipy>=1.11
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+
+# External (install separately — not on PyPI):
+#   pip install git+https://github.com/VISTA-Stanford/meds2text.git
+#
+# Agentic-mode extra:
+#   pip install "anthropic[vertex]"

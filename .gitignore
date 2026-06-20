@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Patient data and intermediate artifacts (NEVER commit)
+patient_records/
+temp_jsons/
+graph_store/
+agentic_toa/runs/
+agentic_toa/temp_graphs/
+agentic_toa/logs/
+outputs/
+cache/
+rag_cache/
+*.graphml
+**/runs/
+**/logs/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
