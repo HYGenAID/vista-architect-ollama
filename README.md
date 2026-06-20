@@ -1,6 +1,6 @@
 # VISTA Architect
 
-A graph-database-oriented health AI system for multidisciplinary tumor boards.
+A graph-database-oriented health AI system here demonstrated in multidiscipdinary tumor boards.
 
 VISTA Architect converts longitudinal EHR records into a two-tier knowledge
 graph — a source-faithful **MEDS Graph** of raw clinical events plus a
