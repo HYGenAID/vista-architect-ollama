@@ -51,17 +51,17 @@ import gsgpt
 # ========== Configuration ==========
 
 # Default model assignments
-DEFAULT_CHUNK_MODEL = "gpt-4.1"      # Fast chunk extraction
-DEFAULT_EPISODE_MODEL = "gpt-4.1"    # Fast episode synthesis (changed from gpt-5 for batched processing)
-DEFAULT_JSON_MODEL = "gpt-4.1"       # Fast retrieval-based JSON generation
-DEFAULT_INFO_MODEL = "gpt-5"         # Combined patient_info + note (benefits from stronger reasoning)
+DEFAULT_CHUNK_MODEL = "gemma4:31b-it-q8_0"      # Fast chunk extraction
+DEFAULT_EPISODE_MODEL = "gemma4:31b-it-q8_0"    # Fast episode synthesis (changed from gpt-5 for batched processing)
+DEFAULT_JSON_MODEL = "gemma4:31b-it-q8_0"       # Fast retrieval-based JSON generation
+DEFAULT_INFO_MODEL = "gemma4:31b-it-q8_0"         # Combined patient_info + note (benefits from stronger reasoning)
 
 # Retry settings
 MAX_RETRIES_TIMEOUT = 3          # Timeouts: give up sooner (likely a real problem)
 MAX_RETRIES_RATE_LIMIT = 15      # 429s: keep trying — shared API key, bucket will refill
 RETRY_WAIT_BASE = 30             # Base wait (seconds), increases with backoff
 RETRY_WAIT_MAX = 120             # Cap backoff at 2 minutes
-REQUEST_TIMEOUT = 120            # seconds
+REQUEST_TIMEOUT = 300            # seconds
 
 
 # ========== Chat Client Factory ==========
@@ -560,7 +560,7 @@ def prepare_single_patient(args) -> Dict[str, Any]:
     else:
         print(f"  XML: {xml_path}")
     print(f"  Output: {output_dir}")
-    print(f"  LLM: gsgpt (proxy: {gsgpt.PROXY_BASE})")
+    # print(f"  LLM: gsgpt (proxy: {gsgpt.PROXY_BASE})")
     print(f"  Chunk model: {args.chunk_model}")
     print(f"  Episode model: {args.episode_model}")
     print(f"  Info model: {args.info_model}")

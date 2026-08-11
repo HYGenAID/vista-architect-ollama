@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vista-architect"
-version = "0.1.0"
+version = "0.1.0+ollama.1"
 description = "Graph-database-oriented health AI for multidisciplinary tumor boards"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -30,9 +30,8 @@ dependencies = [
     "networkx>=3.0",
     "python-dotenv>=1.0",
     "pydantic>=2.0",
-    "openai>=1.0",
-    "anthropic>=0.40",
-    "google-genai>=1.0",
+    "lxml>=6.0.2",
+    "requests>=2.34.2"
 ]
 
 [project.optional-dependencies]

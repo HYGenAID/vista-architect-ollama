@@ -1,5 +1,16 @@
 # VISTA Architect
 
+***Note: This is a custom version with Ollama backend support for using local LLMs.***
+
+Example configuration:
+
+```bash
+export VISTA_LLM_BACKEND=ollama
+export OLLAMA_BASE_URL=http://172.12.0.4:11434 # note: set to the actual IP of the Ollama server
+export OLLAMA_MODEL=gemma4:31b-it-q8_0
+export OLLAMA_TIMEOUT=300
+```
+
 A graph-database-oriented health AI system here demonstrated in multidiscipdinary tumor boards.
 
 VISTA Architect converts longitudinal EHR records into a two-tier knowledge

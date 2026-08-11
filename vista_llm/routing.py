@@ -12,6 +12,7 @@ _BACKENDS = {
     "anthropic": ("anthropic_public", "AnthropicPublicBackend"),
     "gemini":    ("gemini_public",    "GeminiPublicBackend"),
     "vertex":    ("vertex",           "VertexBackend"),
+    "ollama":    ("ollama_public",    "OllamaBackend"),
 }
 
 

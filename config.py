@@ -10,24 +10,25 @@ API_DELAY_SECONDS = 10  # delay between API calls to avoid rate limits
 
 # Model selection configuration
 # GPT-5 is the default for all operations (can be overridden via UI or CLI)
-DEFAULT_MODEL = "gpt-5"
+DEFAULT_MODEL = "gemma4:31b-it-q8_0"
 
 MODELS = {
-    "json_generation": "gpt-5",        # Default for ToA and JSON generation
-    "chat": "gpt-5",                   # Default for dashboard chat
-    "default": "gpt-5"                 # Default for all operations
+    "json_generation": "gemma4:31b-it-q8_0",        # Default for ToA and JSON generation
+    "chat": "gemma4:31b-it-q8_0",                   # Default for dashboard chat
+    "default": "gemma4:31b-it-q8_0"                 # Default for all operations
 }
 
 # TOA-specific model configuration (granular control for different extraction stages)
 TOA_MODELS = {
-    "chunk_extraction": "gpt-4.1",     # XML chunk → timeline events (fast, granular extraction)
-    "episode_splitting": "gpt-5"       # Events → clinical episodes (needs reasoning, use gpt-5 or gemini-2.5-pro)
+    "chunk_extraction": "gemma4:31b-it-q8_0",     # XML chunk → timeline events (fast, granular extraction)
+    "episode_splitting": "gemma4:31b-it-q8_0"       # Events → clinical episodes (needs reasoning, use gpt-5 or gemini-2.5-pro)
 }
 
 # Model-specific token limits (output tokens)
 # Note: Reasoning models (gpt-5, gemini-2.5-pro) need higher limits due to internal reasoning overhead
 # Gemini 2.5 Flash supports up to 65,536 output tokens
 MODEL_MAX_TOKENS = {
+    "gemma4:31b-it-q8_0": 65536, # 
     "gpt-5": 32768,          # TESTING: High limit for reasoning tokens (o1 supports up to 100k output)
     "gpt-5-mini": 4096,      # Mid-range, good for most tasks
     "gpt-5-nano": 2048,      # Smaller, faster responses
@@ -45,7 +46,8 @@ MODEL_MAX_TOKENS = {
 
 # Model-specific context window sizes (input tokens)
 MODEL_CONTEXT_LIMITS = {
-    "gpt-5": 200000,         # 200k token context
+    "gemma4:31b-it-q8_0": 256000, # 256k token context
+    "gpt-5": 200000,         # 200k token context    
     "gpt-5-mini": 128000,    # 128k token context
     "gpt-5-nano": 128000,    # 128k token context
     "gpt-4.1": 128000,       # 128k token context
