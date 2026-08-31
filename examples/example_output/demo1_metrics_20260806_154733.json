@@ -1,0 +1,16 @@
+{
+  "patient_id": "demo1",
+  "success": true,
+  "total_time": 38.5512261390686,
+  "toa_time": 28.90862464904785,
+  "json_time": 9.623791694641113,
+  "xml_chars": 0,
+  "num_events": 0,
+  "num_episodes": 0,
+  "models": {
+    "chunk": "gpt-4.1",
+    "episode": "gpt-4.1",
+    "info": "gpt-4.1"
+  },
+  "timestamp": "2026-08-06T15:46:54.839583"
+}
