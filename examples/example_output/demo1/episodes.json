@@ -1,0 +1,54 @@
+[
+  {
+    "episode_id": "b4b25a3bd7ac7b1bb39cb4d4",
+    "kind": "progression",
+    "start_date": "2022-03-05",
+    "end_date": "2022-03-05",
+    "anchor_event_id": "62944973ddf424c77665295b",
+    "event_ids": [
+      "62944973ddf424c77665295b"
+    ]
+  },
+  {
+    "episode_id": "e2726ea0ac9deb4d8d86c97e",
+    "kind": "surgery_course",
+    "start_date": "2022-04-18",
+    "end_date": "2022-04-18",
+    "anchor_event_id": "b42a603feea11560cb3ada1a",
+    "event_ids": [
+      "b42a603feea11560cb3ada1a"
+    ]
+  },
+  {
+    "episode_id": "e38088de4435e34bbca225ee",
+    "kind": "progression",
+    "start_date": "2024-02-22",
+    "end_date": "2024-02-22",
+    "anchor_event_id": "be5c5e6605550ef939d6af9c",
+    "event_ids": [
+      "be5c5e6605550ef939d6af9c"
+    ]
+  },
+  {
+    "episode_id": "badaea591076ac8448dd306d",
+    "kind": "systemic_tx_line",
+    "start_date": "2024-03-15",
+    "end_date": "2024-03-15",
+    "anchor_event_id": "4f07e0247f75ea1c59aa88c5",
+    "event_ids": [
+      "4f07e0247f75ea1c59aa88c5"
+    ],
+    "line_number": 1,
+    "response_status": "Progression"
+  },
+  {
+    "episode_id": "11d238f14e53c0f9bef96200",
+    "kind": "progression",
+    "start_date": "2024-07-15",
+    "end_date": "2024-07-15",
+    "anchor_event_id": "a1f7a83ef6fd5d1c11374f3c",
+    "event_ids": [
+      "a1f7a83ef6fd5d1c11374f3c"
+    ]
+  }
+]

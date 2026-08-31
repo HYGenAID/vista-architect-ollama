@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "date": "2022-02-15",
+      "type": "imaging",
+      "description": "ct chest: 3.2 cm left upper lobe mass, hilar adenopathy; no distant mets",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2022-03-05",
+      "type": "diagnostic",
+      "description": "Biopsy: moderate sq. cell carcinoma, ALK+, EGFR/BRAF/ROS1/KRAS/other neg, PD-L1 20%",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2022-03-10",
+      "type": "imaging",
+      "description": "pet-ct chest: hypermetabolic LUL nodule (SUV 14.2), hilar node involvement, no distant mets",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2022-04-18",
+      "type": "surgery",
+      "description": "Left upper lobectomy w/ mediastinal node dissection; margins clear",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2023-11-15",
+      "type": "imaging",
+      "description": "ct chest: new 2.5 cm LLL nodule, mild hilar enlargement, suspicious recurrence",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2024-01-08",
+      "type": "imaging",
+      "description": "pet-ct whole_body: 6.5x4.8 cm LLL mass (SUV 18.6), nodules, hilar nodes, T10/rib bone mets",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2024-02-22",
+      "type": "diagnostic",
+      "description": "EBUS-FNA: squamous cell carcinoma, ALK+ by FISH, other driver mutations negative, PD-L1 20%",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2024-03-15",
+      "type": "treatment",
+      "description": "Pembrolizumab + carboplatin/paclitaxel started for metastatic ALK+ NSCLC",
+      "priority": "MAJOR"
+    },
+    {
+      "date": "2024-07-15",
+      "type": "imaging",
+      "description": "pet-ct whole_body: stable LLL mass (4.0 cm), mild rib bone lesion progression, no new sites",
+      "priority": "MAJOR"
+    }
+  ]
+}

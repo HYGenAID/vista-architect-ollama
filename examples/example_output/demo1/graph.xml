@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d32" for="edge" attr.name="lab_name" attr.type="string"/>
+<key id="d31" for="edge" attr.name="date" attr.type="string"/>
+<key id="d30" for="edge" attr.name="evidence_date" attr.type="string"/>
+<key id="d29" for="edge" attr.name="days_between" attr.type="long"/>
+<key id="d28" for="edge" attr.name="edge_type" attr.type="string"/>
+<key id="d27" for="node" attr.name="provenance_type" attr.type="string"/>
+<key id="d26" for="node" attr.name="parent_event_id" attr.type="string"/>
+<key id="d25" for="node" attr.name="direction" attr.type="string"/>
+<key id="d24" for="node" attr.name="value_string" attr.type="string"/>
+<key id="d23" for="node" attr.name="value" attr.type="double"/>
+<key id="d22" for="node" attr.name="lab_name" attr.type="string"/>
+<key id="d21" for="node" attr.name="response_status" attr.type="string"/>
+<key id="d20" for="node" attr.name="line_number" attr.type="long"/>
+<key id="d19" for="node" attr.name="event_ids" attr.type="string"/>
+<key id="d18" for="node" attr.name="anchor_event_id" attr.type="string"/>
+<key id="d17" for="node" attr.name="end_date" attr.type="string"/>
+<key id="d16" for="node" attr.name="start_date" attr.type="string"/>
+<key id="d15" for="node" attr.name="kind" attr.type="string"/>
+<key id="d14" for="node" attr.name="episode_id" attr.type="string"/>
+<key id="d13" for="node" attr.name="values" attr.type="string"/>
+<key id="d12" for="node" attr.name="subtype" attr.type="string"/>
+<key id="d11" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d10" for="node" attr.name="patient_id" attr.type="string"/>
+<key id="d9" for="node" attr.name="event_id" attr.type="string"/>
+<key id="d8" for="node" attr.name="valid_time_start" attr.type="string"/>
+<key id="d7" for="node" attr.name="priority" attr.type="string"/>
+<key id="d6" for="node" attr.name="description" attr.type="string"/>
+<key id="d5" for="node" attr.name="site" attr.type="string"/>
+<key id="d4" for="node" attr.name="modality" attr.type="string"/>
+<key id="d3" for="node" attr.name="type" attr.type="string"/>
+<key id="d2" for="node" attr.name="source_event_refs" attr.type="string"/>
+<key id="d1" for="node" attr.name="evidence_date" attr.type="string"/>
+<key id="d0" for="node" attr.name="date" attr.type="string"/>
+<graph edgedefault="directed"><node id="abe141dc771caccd20b03dcd">
+  <data key="d0">2022-02-15</data>
+  <data key="d1">2022-02-15</data>
+  <data key="d2">["E3", "E4"]</data>
+  <data key="d3">imaging</data>
+  <data key="d4">ct</data>
+  <data key="d5">chest</data>
+  <data key="d6">ct chest: 3.2 cm left upper lobe mass, hilar adenopathy; no distant mets</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2022-02-15</data>
+  <data key="d9">abe141dc771caccd20b03dcd</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="62944973ddf424c77665295b">
+  <data key="d0">2022-03-05</data>
+  <data key="d1">2022-03-05</data>
+  <data key="d2">["E5", "E7"]</data>
+  <data key="d3">diagnostic</data>
+  <data key="d12">biopsy</data>
+  <data key="d5">chest</data>
+  <data key="d6">Biopsy: moderate sq. cell carcinoma, ALK+, EGFR/BRAF/ROS1/KRAS/other neg, PD-L1 20%</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2022-03-05</data>
+  <data key="d9">62944973ddf424c77665295b</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="73499b9d5bffd9961427c080">
+  <data key="d0">2022-03-10</data>
+  <data key="d1">2022-03-10</data>
+  <data key="d2">["E8", "E9"]</data>
+  <data key="d3">imaging</data>
+  <data key="d4">pet-ct</data>
+  <data key="d5">chest</data>
+  <data key="d6">pet-ct chest: hypermetabolic LUL nodule (SUV 14.2), hilar node involvement, no distant mets</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2022-03-10</data>
+  <data key="d9">73499b9d5bffd9961427c080</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="b42a603feea11560cb3ada1a">
+  <data key="d0">2022-04-18</data>
+  <data key="d1">2022-04-18</data>
+  <data key="d2">["E12", "E13"]</data>
+  <data key="d3">surgery</data>
+  <data key="d5">chest</data>
+  <data key="d6">Left upper lobectomy w/ mediastinal node dissection; margins clear</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2022-04-18</data>
+  <data key="d9">b42a603feea11560cb3ada1a</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="c4a02907dc3e12933a427397">
+  <data key="d0">2022-06-20</data>
+  <data key="d1">2022-06-20</data>
+  <data key="d2">["E14"]</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2022-06-20</data>
+  <data key="d3">critical_information</data>
+  <data key="d6">ECOG 0 post-op; no adjuvant tx; recovery good</data>
+  <data key="d9">c4a02907dc3e12933a427397</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="086731ef28195c0a7d0aa884">
+  <data key="d0">2023-11-15</data>
+  <data key="d1">2023-11-15</data>
+  <data key="d2">["E17", "E18"]</data>
+  <data key="d3">imaging</data>
+  <data key="d4">ct</data>
+  <data key="d5">chest</data>
+  <data key="d6">ct chest: new 2.5 cm LLL nodule, mild hilar enlargement, suspicious recurrence</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2023-11-15</data>
+  <data key="d9">086731ef28195c0a7d0aa884</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="fbe7e305faee7ec5bfa330bb">
+  <data key="d0">2024-01-08</data>
+  <data key="d1">2024-01-08</data>
+  <data key="d2">["E19", "E20"]</data>
+  <data key="d3">imaging</data>
+  <data key="d4">pet-ct</data>
+  <data key="d5">whole_body</data>
+  <data key="d6">pet-ct whole_body: 6.5x4.8 cm LLL mass (SUV 18.6), nodules, hilar nodes, T10/rib bone mets</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2024-01-08</data>
+  <data key="d9">fbe7e305faee7ec5bfa330bb</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="162e03e41f821788e18786ac">
+  <data key="d0">2024-01-08</data>
+  <data key="d1">2024-01-08</data>
+  <data key="d2">["E20"]</data>
+  <data key="d3">lab</data>
+  <data key="d6">CEA 12.3↑</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2024-01-08</data>
+  <data key="d13">{"CEA": "12.3\u2191"}</data>
+  <data key="d9">162e03e41f821788e18786ac</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="be5c5e6605550ef939d6af9c">
+  <data key="d0">2024-02-22</data>
+  <data key="d1">2024-02-22</data>
+  <data key="d2">["E23", "E24"]</data>
+  <data key="d3">diagnostic</data>
+  <data key="d12">biopsy</data>
+  <data key="d5">chest</data>
+  <data key="d6">EBUS-FNA: squamous cell carcinoma, ALK+ by FISH, other driver mutations negative, PD-L1 20%</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2024-02-22</data>
+  <data key="d9">be5c5e6605550ef939d6af9c</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="4f07e0247f75ea1c59aa88c5">
+  <data key="d0">2024-03-15</data>
+  <data key="d1">2024-03-15</data>
+  <data key="d2">["E25"]</data>
+  <data key="d3">treatment</data>
+  <data key="d6">Pembrolizumab + carboplatin/paclitaxel started for metastatic ALK+ NSCLC</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2024-03-15</data>
+  <data key="d9">4f07e0247f75ea1c59aa88c5</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="d677828dce66555ffa6b64c8">
+  <data key="d0">2024-05-10</data>
+  <data key="d1">2024-05-10</data>
+  <data key="d2">["E26"]</data>
+  <data key="d3">lab</data>
+  <data key="d6">Hb 11.9↓</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2024-05-10</data>
+  <data key="d13">{"Hb": "11.9\u2193"}</data>
+  <data key="d9">d677828dce66555ffa6b64c8</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="65d97e00775496eb9f6c1769">
+  <data key="d0">2024-05-10</data>
+  <data key="d1">2024-05-10</data>
+  <data key="d2">["E26"]</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2024-05-10</data>
+  <data key="d3">critical_information</data>
+  <data key="d6">Partial response after 2 cycles; grade 2 neuropathy/fatigue, dose reduction</data>
+  <data key="d9">65d97e00775496eb9f6c1769</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="0fd725a93e90c027528e08d5">
+  <data key="d0">2024-06-28</data>
+  <data key="d1">2024-06-28</data>
+  <data key="d2">["E29"]</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2024-06-28</data>
+  <data key="d3">critical_information</data>
+  <data key="d6">Completed 4 cycles; stable disease; progressive cough/weight loss; plan restaging PET-CT</data>
+  <data key="d9">0fd725a93e90c027528e08d5</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="a1f7a83ef6fd5d1c11374f3c">
+  <data key="d0">2024-07-15</data>
+  <data key="d1">2024-07-15</data>
+  <data key="d2">["E30", "E31"]</data>
+  <data key="d3">imaging</data>
+  <data key="d4">pet-ct</data>
+  <data key="d5">whole_body</data>
+  <data key="d6">pet-ct whole_body: stable LLL mass (4.0 cm), mild rib bone lesion progression, no new sites</data>
+  <data key="d7">MAJOR</data>
+  <data key="d8">2024-07-15</data>
+  <data key="d9">a1f7a83ef6fd5d1c11374f3c</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="81365e28e5b3300539709303">
+  <data key="d0">2024-07-15</data>
+  <data key="d1">2024-07-15</data>
+  <data key="d2">["E30", "E31"]</data>
+  <data key="d4">pet-ct</data>
+  <data key="d5">whole_body</data>
+  <data key="d7">MINOR</data>
+  <data key="d8">2024-07-15</data>
+  <data key="d3">critical_information</data>
+  <data key="d6">Current meds: Albuterol (COPD), Lisinopril (HTN); no changes, no allergies</data>
+  <data key="d9">81365e28e5b3300539709303</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Event</data>
+</node>
+<node id="b4b25a3bd7ac7b1bb39cb4d4">
+  <data key="d14">b4b25a3bd7ac7b1bb39cb4d4</data>
+  <data key="d15">progression</data>
+  <data key="d16">2022-03-05</data>
+  <data key="d17">2022-03-05</data>
+  <data key="d18">62944973ddf424c77665295b</data>
+  <data key="d19">["62944973ddf424c77665295b"]</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Episode</data>
+</node>
+<node id="e2726ea0ac9deb4d8d86c97e">
+  <data key="d14">e2726ea0ac9deb4d8d86c97e</data>
+  <data key="d15">surgery_course</data>
+  <data key="d16">2022-04-18</data>
+  <data key="d17">2022-04-18</data>
+  <data key="d18">b42a603feea11560cb3ada1a</data>
+  <data key="d19">["b42a603feea11560cb3ada1a"]</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Episode</data>
+</node>
+<node id="e38088de4435e34bbca225ee">
+  <data key="d14">e38088de4435e34bbca225ee</data>
+  <data key="d15">progression</data>
+  <data key="d16">2024-02-22</data>
+  <data key="d17">2024-02-22</data>
+  <data key="d18">be5c5e6605550ef939d6af9c</data>
+  <data key="d19">["be5c5e6605550ef939d6af9c"]</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Episode</data>
+</node>
+<node id="badaea591076ac8448dd306d">
+  <data key="d14">badaea591076ac8448dd306d</data>
+  <data key="d15">systemic_tx_line</data>
+  <data key="d16">2024-03-15</data>
+  <data key="d17">2024-03-15</data>
+  <data key="d18">4f07e0247f75ea1c59aa88c5</data>
+  <data key="d19">["4f07e0247f75ea1c59aa88c5"]</data>
+  <data key="d20">1</data>
+  <data key="d21">Progression</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Episode</data>
+</node>
+<node id="11d238f14e53c0f9bef96200">
+  <data key="d14">11d238f14e53c0f9bef96200</data>
+  <data key="d15">progression</data>
+  <data key="d16">2024-07-15</data>
+  <data key="d17">2024-07-15</data>
+  <data key="d18">a1f7a83ef6fd5d1c11374f3c</data>
+  <data key="d19">["a1f7a83ef6fd5d1c11374f3c"]</data>
+  <data key="d10">demo1</data>
+  <data key="d11">Episode</data>
+</node>
+<node id="measure_19f412764bf22f36">
+  <data key="d11">Measurement</data>
+  <data key="d10">demo1</data>
+  <data key="d22">CEA</data>
+  <data key="d23">12.3</data>
+  <data key="d24">12.3↑</data>
+  <data key="d25">high</data>
+  <data key="d0">2024-01-08</data>
+  <data key="d1">2024-01-08</data>
+  <data key="d26">162e03e41f821788e18786ac</data>
+</node>
+<node id="measure_ad9568ff895de5b7">
+  <data key="d11">Measurement</data>
+  <data key="d10">demo1</data>
+  <data key="d22">Hb</data>
+  <data key="d23">11.9</data>
+  <data key="d24">11.9↓</data>
+  <data key="d25">low</data>
+  <data key="d0">2024-05-10</data>
+  <data key="d1">2024-05-10</data>
+  <data key="d26">d677828dce66555ffa6b64c8</data>
+</node>
+<node id="xml_date_2022-02-15">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2022-02-15</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2022-03-05">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2022-03-05</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2022-03-10">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2022-03-10</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2022-04-18">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2022-04-18</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2022-06-20">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2022-06-20</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2023-11-15">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2023-11-15</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-01-08">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-01-08</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-02-22">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-02-22</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-03-15">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-03-15</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-05-10">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-05-10</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-06-28">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-06-28</data>
+  <data key="d27">date_level</data>
+</node>
+<node id="xml_date_2024-07-15">
+  <data key="d11">XMLFragment</data>
+  <data key="d1">2024-07-15</data>
+  <data key="d27">date_level</data>
+</node>
+<edge source="abe141dc771caccd20b03dcd" target="62944973ddf424c77665295b" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">18</data>
+</edge>
+<edge source="abe141dc771caccd20b03dcd" target="xml_date_2022-02-15" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2022-02-15</data>
+</edge>
+<edge source="62944973ddf424c77665295b" target="73499b9d5bffd9961427c080" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">5</data>
+</edge>
+<edge source="62944973ddf424c77665295b" target="xml_date_2022-03-05" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2022-03-05</data>
+</edge>
+<edge source="73499b9d5bffd9961427c080" target="b42a603feea11560cb3ada1a" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">39</data>
+</edge>
+<edge source="73499b9d5bffd9961427c080" target="xml_date_2022-03-10" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2022-03-10</data>
+</edge>
+<edge source="b42a603feea11560cb3ada1a" target="c4a02907dc3e12933a427397" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">63</data>
+</edge>
+<edge source="b42a603feea11560cb3ada1a" target="xml_date_2022-04-18" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2022-04-18</data>
+</edge>
+<edge source="c4a02907dc3e12933a427397" target="086731ef28195c0a7d0aa884" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">513</data>
+</edge>
+<edge source="c4a02907dc3e12933a427397" target="xml_date_2022-06-20" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2022-06-20</data>
+</edge>
+<edge source="086731ef28195c0a7d0aa884" target="fbe7e305faee7ec5bfa330bb" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">54</data>
+</edge>
+<edge source="086731ef28195c0a7d0aa884" target="xml_date_2023-11-15" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2023-11-15</data>
+</edge>
+<edge source="fbe7e305faee7ec5bfa330bb" target="162e03e41f821788e18786ac" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">0</data>
+</edge>
+<edge source="fbe7e305faee7ec5bfa330bb" target="162e03e41f821788e18786ac" id="1">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-01-08</data>
+</edge>
+<edge source="fbe7e305faee7ec5bfa330bb" target="xml_date_2024-01-08" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-01-08</data>
+</edge>
+<edge source="162e03e41f821788e18786ac" target="measure_19f412764bf22f36" id="0">
+  <data key="d28">HAS_MEASUREMENT</data>
+  <data key="d32">CEA</data>
+</edge>
+<edge source="162e03e41f821788e18786ac" target="be5c5e6605550ef939d6af9c" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">45</data>
+</edge>
+<edge source="162e03e41f821788e18786ac" target="fbe7e305faee7ec5bfa330bb" id="0">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-01-08</data>
+</edge>
+<edge source="162e03e41f821788e18786ac" target="xml_date_2024-01-08" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-01-08</data>
+</edge>
+<edge source="be5c5e6605550ef939d6af9c" target="4f07e0247f75ea1c59aa88c5" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">22</data>
+</edge>
+<edge source="be5c5e6605550ef939d6af9c" target="xml_date_2024-02-22" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-02-22</data>
+</edge>
+<edge source="4f07e0247f75ea1c59aa88c5" target="d677828dce66555ffa6b64c8" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">56</data>
+</edge>
+<edge source="4f07e0247f75ea1c59aa88c5" target="xml_date_2024-03-15" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-03-15</data>
+</edge>
+<edge source="d677828dce66555ffa6b64c8" target="measure_ad9568ff895de5b7" id="0">
+  <data key="d28">HAS_MEASUREMENT</data>
+  <data key="d32">Hb</data>
+</edge>
+<edge source="d677828dce66555ffa6b64c8" target="65d97e00775496eb9f6c1769" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">0</data>
+</edge>
+<edge source="d677828dce66555ffa6b64c8" target="65d97e00775496eb9f6c1769" id="1">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-05-10</data>
+</edge>
+<edge source="d677828dce66555ffa6b64c8" target="xml_date_2024-05-10" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-05-10</data>
+</edge>
+<edge source="65d97e00775496eb9f6c1769" target="0fd725a93e90c027528e08d5" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">49</data>
+</edge>
+<edge source="65d97e00775496eb9f6c1769" target="d677828dce66555ffa6b64c8" id="0">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-05-10</data>
+</edge>
+<edge source="65d97e00775496eb9f6c1769" target="xml_date_2024-05-10" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-05-10</data>
+</edge>
+<edge source="0fd725a93e90c027528e08d5" target="a1f7a83ef6fd5d1c11374f3c" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">17</data>
+</edge>
+<edge source="0fd725a93e90c027528e08d5" target="xml_date_2024-06-28" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-06-28</data>
+</edge>
+<edge source="a1f7a83ef6fd5d1c11374f3c" target="81365e28e5b3300539709303" id="0">
+  <data key="d28">PRECEDES</data>
+  <data key="d29">0</data>
+</edge>
+<edge source="a1f7a83ef6fd5d1c11374f3c" target="81365e28e5b3300539709303" id="1">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-07-15</data>
+</edge>
+<edge source="a1f7a83ef6fd5d1c11374f3c" target="xml_date_2024-07-15" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-07-15</data>
+</edge>
+<edge source="81365e28e5b3300539709303" target="a1f7a83ef6fd5d1c11374f3c" id="0">
+  <data key="d28">SAME_DAY</data>
+  <data key="d31">2024-07-15</data>
+</edge>
+<edge source="81365e28e5b3300539709303" target="xml_date_2024-07-15" id="0">
+  <data key="d28">SOURCED_FROM</data>
+  <data key="d30">2024-07-15</data>
+</edge>
+<edge source="b4b25a3bd7ac7b1bb39cb4d4" target="62944973ddf424c77665295b" id="0">
+  <data key="d28">CONTAINS</data>
+</edge>
+<edge source="b4b25a3bd7ac7b1bb39cb4d4" target="62944973ddf424c77665295b" id="1">
+  <data key="d28">ANCHORED_BY</data>
+</edge>
+<edge source="b4b25a3bd7ac7b1bb39cb4d4" target="e2726ea0ac9deb4d8d86c97e" id="0">
+  <data key="d28">FOLLOWED_BY</data>
+</edge>
+<edge source="e2726ea0ac9deb4d8d86c97e" target="b42a603feea11560cb3ada1a" id="0">
+  <data key="d28">CONTAINS</data>
+</edge>
+<edge source="e2726ea0ac9deb4d8d86c97e" target="b42a603feea11560cb3ada1a" id="1">
+  <data key="d28">ANCHORED_BY</data>
+</edge>
+<edge source="e2726ea0ac9deb4d8d86c97e" target="e38088de4435e34bbca225ee" id="0">
+  <data key="d28">FOLLOWED_BY</data>
+</edge>
+<edge source="e38088de4435e34bbca225ee" target="be5c5e6605550ef939d6af9c" id="0">
+  <data key="d28">CONTAINS</data>
+</edge>
+<edge source="e38088de4435e34bbca225ee" target="be5c5e6605550ef939d6af9c" id="1">
+  <data key="d28">ANCHORED_BY</data>
+</edge>
+<edge source="e38088de4435e34bbca225ee" target="badaea591076ac8448dd306d" id="0">
+  <data key="d28">FOLLOWED_BY</data>
+</edge>
+<edge source="badaea591076ac8448dd306d" target="4f07e0247f75ea1c59aa88c5" id="0">
+  <data key="d28">CONTAINS</data>
+</edge>
+<edge source="badaea591076ac8448dd306d" target="4f07e0247f75ea1c59aa88c5" id="1">
+  <data key="d28">ANCHORED_BY</data>
+</edge>
+<edge source="badaea591076ac8448dd306d" target="11d238f14e53c0f9bef96200" id="0">
+  <data key="d28">FOLLOWED_BY</data>
+</edge>
+<edge source="11d238f14e53c0f9bef96200" target="a1f7a83ef6fd5d1c11374f3c" id="0">
+  <data key="d28">CONTAINS</data>
+</edge>
+<edge source="11d238f14e53c0f9bef96200" target="a1f7a83ef6fd5d1c11374f3c" id="1">
+  <data key="d28">ANCHORED_BY</data>
+</edge>
+</graph></graphml>

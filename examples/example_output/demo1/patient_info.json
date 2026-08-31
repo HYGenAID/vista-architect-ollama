@@ -1,0 +1,73 @@
+{
+  "PATIENT DEMOGRAPHICS": {
+    "name": "Thor Axlung",
+    "date_of_birth": "1955-01-01",
+    "sex": "Male",
+    "height_cm": null,
+    "weight_kg": 78,
+    "ecog_performance_status": "0",
+    "previous_conditions": "COPD, hypertension",
+    "therapy_toxicities": "Grade 2 neuropathy, fatigue, COPD, hypertension",
+    "allergies": [],
+    "smoking_history": "Former, 40 pack-years, quit 2018",
+    "medications": [
+      {
+        "name": "Albuterol Sulfate Inhaler",
+        "dose": "90 mcg/actuation, 2 puffs as needed",
+        "frequency": "as needed"
+      },
+      {
+        "name": "Lisinopril",
+        "dose": "10 mg",
+        "frequency": "daily"
+      }
+    ],
+    "dnr": "No"
+  },
+  "TUMOR INFORMATION": {
+    "diagnosis": "NSCLC, left lung. Metastasis (bone, bilateral lungs, hilar lymph nodes). Recurrent.",
+    "tnm_staging": "cT3N2M1b",
+    "histology": "Moderately differentiated squamous cell carcinoma",
+    "metastasis_status": "Yes (bone, bilateral lungs, hilar lymph nodes)",
+    "lymph_node_involvement": "Yes",
+    "driver_mutations": {
+      "ALK": "Rearrangement positive (confirmed by NGS and FISH)",
+      "EGFR": "Negative",
+      "KRAS": "Negative",
+      "ROS1": "Negative",
+      "BRAF": "Negative",
+      "MET": "Negative",
+      "RET": "Negative",
+      "NTRK": "Negative",
+      "ERBB2 (HER2)": "Negative",
+      "NRG1": "Negative",
+      "PD-L1": "20% (TPS, clone not specified)"
+    },
+    "latest_updates": [
+      "Restaging PET/CT 2024-07-15: stable lung mass, mild rib bone lesion progression, no new sites",
+      "Ongoing symptoms: progressive cough, weight loss, grade 2 neuropathy, fatigue",
+      "Recommend tumor board review for therapy adjustment—consider ALK inhibitor"
+    ],
+    "body_diagram_image": ""
+  },
+  "TREATMENTS": {
+    "current": [
+      "Pembrolizumab+Carboplatin+Paclitaxel (start date: 2024-03-15)"
+    ],
+    "previous": [
+      "Left upper lobectomy with mediastinal node dissection (2022-04-18, clear margins, pT2bN1M0, tolerated well, discharged POD 5)",
+      "Surveillance, no adjuvant therapy (2022-04-18 to 2023-11-15, NED, stopped at recurrence)",
+      "Pembrolizumab+Carboplatin+Paclitaxel (2024-03-15 to 2024-07-15, partial response after 2 cycles, then stable disease, mild bone progression, continued toxicity)"
+    ],
+    "radiation_therapy": "No",
+    "alternatives": [
+      "Alectinib (ALK inhibitor) for ALK+ NSCLC upon progression",
+      "Other targeted ALK TKIs or clinical trial enrollment if available"
+    ],
+    "surgical_candidate": {
+      "eligible": false,
+      "description": "Not eligible due to metastatic disease (bone, bilateral lungs, lymph nodes)"
+    },
+    "date_of_last_ct": "2024-07-15"
+  }
+}

@@ -1,0 +1,1134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d24" for="edge" attr.name="relation" attr.type="string"/>
+<key id="d23" for="edge" attr.name="visit_id" attr.type="string"/>
+<key id="d22" for="edge" attr.name="edge_type" attr.type="string"/>
+<key id="d21" for="node" attr.name="evidence_date" attr.type="string"/>
+<key id="d20" for="node" attr.name="provenance_type" attr.type="string"/>
+<key id="d19" for="node" attr.name="procedure_id" attr.type="string"/>
+<key id="d18" for="node" attr.name="note_id" attr.type="string"/>
+<key id="d17" for="node" attr.name="event_count" attr.type="long"/>
+<key id="d16" for="node" attr.name="event_id" attr.type="string"/>
+<key id="d15" for="node" attr.name="value" attr.type="string"/>
+<key id="d14" for="node" attr.name="name" attr.type="string"/>
+<key id="d13" for="node" attr.name="code" attr.type="string"/>
+<key id="d12" for="node" attr.name="care_site_id" attr.type="string"/>
+<key id="d11" for="node" attr.name="provider_id" attr.type="string"/>
+<key id="d10" for="node" attr.name="visit_id" attr.type="string"/>
+<key id="d9" for="node" attr.name="type" attr.type="string"/>
+<key id="d8" for="node" attr.name="time" attr.type="string"/>
+<key id="d7" for="node" attr.name="date" attr.type="string"/>
+<key id="d6" for="node" attr.name="timestamp" attr.type="string"/>
+<key id="d5" for="node" attr.name="patient_id" attr.type="string"/>
+<key id="d4" for="node" attr.name="gender" attr.type="string"/>
+<key id="d3" for="node" attr.name="ethnicity" attr.type="string"/>
+<key id="d2" for="node" attr.name="age_years" attr.type="string"/>
+<key id="d1" for="node" attr.name="birthdate" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_type" attr.type="string"/>
+<graph edgedefault="directed"><node id="987654321_person">
+  <data key="d0">Person</data>
+  <data key="d1">1955-01-01</data>
+  <data key="d2">70</data>
+  <data key="d3">White</data>
+  <data key="d4">MALE</data>
+</node>
+<node id="visit_5000001">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-02-10 08:00:00</data>
+  <data key="d7">2022-02-10</data>
+  <data key="d8">08:00</data>
+  <data key="d9">visit</data>
+  <data key="d0">Visit</data>
+  <data key="d10">5000001</data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">HEALTHCARE_VISIT/Outpatient|Routine|Office Visit</data>
+  <data key="d14"></data>
+  <data key="d15">start</data>
+  <data key="d16">visit_5000001</data>
+  <data key="d17">1</data>
+</node>
+<node id="ac137007a5679886154ae0ec">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-02-10 08:00:00</data>
+  <data key="d7">2022-02-10</data>
+  <data key="d8">08:00</data>
+  <data key="d9">condition</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">ICD10/R05</data>
+  <data key="d14">Persistent cough post-COVID-19 infection</data>
+  <data key="d15"></data>
+  <data key="d16">ac137007a5679886154ae0ec</data>
+</node>
+<node id="note_1000001">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-02-10 08:00:00</data>
+  <data key="d7">2022-02-10</data>
+  <data key="d8">08:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Initial Evaluation Note</data>
+  <data key="d15">Patient Thor Axlung, 67-year-old male with history of smoking (quit 2018, 40 pack-years), COPD, and hypertension, presents with persistent cough lasting 3 weeks following a recent COVID-19 infection. No fever, hemoptysis, or significant weight loss reported. Physical exam: Clear lungs, no distress. Ordered chest CT to evaluate.</data>
+  <data key="d18">1000001</data>
+  <data key="d16">note_1000001</data>
+</node>
+<node id="proc_6000001">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-02-15 10:00:00</data>
+  <data key="d7">2022-02-15</data>
+  <data key="d8">10:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12">345678</data>
+  <data key="d13">CPT/71260</data>
+  <data key="d14">CT Chest without contrast</data>
+  <data key="d15"></data>
+  <data key="d19">6000001</data>
+  <data key="d16">proc_6000001</data>
+</node>
+<node id="note_1000002">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-02-15 10:00:00</data>
+  <data key="d7">2022-02-15</data>
+  <data key="d8">10:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11537-8</data>
+  <data key="d14">Imaging Report</data>
+  <data key="d15">CT Chest: 3.2 cm mass in left upper lobe with associated hilar adenopathy. No evidence of distant metastasis. Recommend further evaluation with biopsy. Referred to oncology for consultation.</data>
+  <data key="d18">1000002</data>
+  <data key="d16">note_1000002</data>
+</node>
+<node id="proc_6000002">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-05 09:00:00</data>
+  <data key="d7">2022-03-05</data>
+  <data key="d8">09:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">CPT/31625</data>
+  <data key="d14">Bronchoscopy with biopsy</data>
+  <data key="d15"></data>
+  <data key="d19">6000002</data>
+  <data key="d16">proc_6000002</data>
+</node>
+<node id="8889e1865879fdeebd8fa3b5">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-05 09:00:00</data>
+  <data key="d7">2022-03-05</data>
+  <data key="d8">09:00</data>
+  <data key="d9">condition</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">ICD10/C34.11</data>
+  <data key="d14">Malignant neoplasm of upper lobe, right bronchus or lung</data>
+  <data key="d15"></data>
+  <data key="d16">8889e1865879fdeebd8fa3b5</data>
+</node>
+<node id="note_1000003">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-05 09:00:00</data>
+  <data key="d7">2022-03-05</data>
+  <data key="d8">09:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/33756-9</data>
+  <data key="d14">Pathology Report</data>
+  <data key="d15">Biopsy from left upper lobe mass: Moderately differentiated squamous cell carcinoma. NGS panel results: ALK rearrangement positive. EGFR: Negative. ROS1: Negative. BRAF: Negative. MET exon 14: Negative. RET: Negative. NTRK: Negative. KRAS: Negative. ERBB2 (HER2): Negative. NRG1: Negative. PD-L1 expression: Low (TPS 20%). Recommend staging PET/CT.</data>
+  <data key="d18">1000003</data>
+  <data key="d16">note_1000003</data>
+</node>
+<node id="proc_6000003">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-10 11:00:00</data>
+  <data key="d7">2022-03-10</data>
+  <data key="d8">11:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12">345678</data>
+  <data key="d13">CPT/78815</data>
+  <data key="d14">PET/CT Scan</data>
+  <data key="d15"></data>
+  <data key="d19">6000003</data>
+  <data key="d16">proc_6000003</data>
+</node>
+<node id="note_1000004">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-10 11:00:00</data>
+  <data key="d7">2022-03-10</data>
+  <data key="d8">11:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11537-8</data>
+  <data key="d14">Imaging Report</data>
+  <data key="d15">PET/CT: Hypermetabolic left upper lobe nodule (SUV 14.2), hilar lymph nodes involved, no distant metastases. Staging: cT2bN1M0 (Stage IIA). Proceed to surgical evaluation.</data>
+  <data key="d18">1000004</data>
+  <data key="d16">note_1000004</data>
+</node>
+<node id="935011c987799eb21f7487fb">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-10 11:00:00</data>
+  <data key="d7">2022-03-10</data>
+  <data key="d8">11:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/2039-6</data>
+  <data key="d14">CEA Level</data>
+  <data key="d15">Value: 4.5 ng/mL (normal &lt;5.0)</data>
+  <data key="d16">935011c987799eb21f7487fb</data>
+</node>
+<node id="a7c91a4f86c45afc997d59e8">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-03-10 11:00:00</data>
+  <data key="d7">2022-03-10</data>
+  <data key="d8">11:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/57021-8</data>
+  <data key="d14">CBC Panel</data>
+  <data key="d15">WBC: 8.2 x10^3/uL, Hb: 13.5 g/dL, Plt: 250 x10^3/uL</data>
+  <data key="d16">a7c91a4f86c45afc997d59e8</data>
+</node>
+<node id="proc_6000004">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-04-18 07:00:00</data>
+  <data key="d7">2022-04-18</data>
+  <data key="d8">07:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">445566</data>
+  <data key="d12">789012</data>
+  <data key="d13">CPT/32663</data>
+  <data key="d14">Thoracoscopic left upper lobectomy with lymph node dissection</data>
+  <data key="d15"></data>
+  <data key="d19">6000004</data>
+  <data key="d16">proc_6000004</data>
+</node>
+<node id="note_1000005">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-04-18 07:00:00</data>
+  <data key="d7">2022-04-18</data>
+  <data key="d8">07:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">445566</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Surgical Note</data>
+  <data key="d15">Performed left upper lobectomy and mediastinal lymph node dissection. Pathology: pT2bN1M0 squamous cell carcinoma, margins clear. Patient tolerated procedure well, discharged on POD 5.</data>
+  <data key="d18">1000005</data>
+  <data key="d16">note_1000005</data>
+</node>
+<node id="visit_5000002">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-06-20 14:00:00</data>
+  <data key="d7">2022-06-20</data>
+  <data key="d8">14:00</data>
+  <data key="d9">visit</data>
+  <data key="d0">Visit</data>
+  <data key="d10">5000002</data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">HEALTHCARE_VISIT/Outpatient|Follow-up|Post-op Surveillance</data>
+  <data key="d14"></data>
+  <data key="d15"></data>
+  <data key="d16">visit_5000002</data>
+  <data key="d17">1</data>
+</node>
+<node id="note_1000006">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-06-20 14:00:00</data>
+  <data key="d7">2022-06-20</data>
+  <data key="d8">14:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Follow-up Note</data>
+  <data key="d15">Post-op CT stable, no evidence of recurrence. No adjuvant therapy recommended given stage and performance status (ECOG 0). Continue surveillance every 3-6 months. Patient reports good recovery, minimal dyspnea managed with inhalers for COPD.</data>
+  <data key="d18">1000006</data>
+  <data key="d16">note_1000006</data>
+</node>
+<node id="b1935d89c346bcb12bb7c7e9">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-06-20 14:00:00</data>
+  <data key="d7">2022-06-20</data>
+  <data key="d8">14:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/2039-6</data>
+  <data key="d14">CEA Level</data>
+  <data key="d15">Value: 3.8 ng/mL</data>
+  <data key="d16">b1935d89c346bcb12bb7c7e9</data>
+</node>
+<node id="746df4261c76d8644565108d">
+  <data key="d5">987654321</data>
+  <data key="d6">2022-06-20 14:00:00</data>
+  <data key="d7">2022-06-20</data>
+  <data key="d8">14:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/57021-8</data>
+  <data key="d14">CBC Panel</data>
+  <data key="d15">WBC: 7.5 x10^3/uL, Hb: 14.0 g/dL, Plt: 220 x10^3/uL</data>
+  <data key="d16">746df4261c76d8644565108d</data>
+</node>
+<node id="proc_6000005">
+  <data key="d5">987654321</data>
+  <data key="d6">2023-11-15 10:30:00</data>
+  <data key="d7">2023-11-15</data>
+  <data key="d8">10:30</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12">345678</data>
+  <data key="d13">CPT/71260</data>
+  <data key="d14">Surveillance CT Chest</data>
+  <data key="d15"></data>
+  <data key="d19">6000005</data>
+  <data key="d16">proc_6000005</data>
+</node>
+<node id="note_1000007">
+  <data key="d5">987654321</data>
+  <data key="d6">2023-11-15 10:30:00</data>
+  <data key="d7">2023-11-15</data>
+  <data key="d8">10:30</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11537-8</data>
+  <data key="d14">Imaging Report</data>
+  <data key="d15">New 2.5 cm nodule in left lower lobe, suspicious for recurrence. Mild hilar enlargement. Recommend PET/CT for further staging. Patient noted mild dyspnea and 5 lb weight loss since last visit.</data>
+  <data key="d18">1000007</data>
+  <data key="d16">note_1000007</data>
+</node>
+<node id="proc_6000006">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-01-08 09:00:00</data>
+  <data key="d7">2024-01-08</data>
+  <data key="d8">09:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12">345678</data>
+  <data key="d13">CPT/78815</data>
+  <data key="d14">PET/CT Scan</data>
+  <data key="d15"></data>
+  <data key="d19">6000006</data>
+  <data key="d16">proc_6000006</data>
+</node>
+<node id="note_1000008">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-01-08 09:00:00</data>
+  <data key="d7">2024-01-08</data>
+  <data key="d8">09:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11537-8</data>
+  <data key="d14">Imaging Report</data>
+  <data key="d15">Recurrent disease: Left lower lobe mass 6.5 x 4.8 cm (SUV 18.6), bilateral pulmonary nodules, hilar nodes, and hypermetabolic bone lesions in T10 vertebra and right rib. No brain involvement on concurrent MRI. Staging: cT3N2M1b (Stage IV). Refer back to oncology for systemic therapy options.</data>
+  <data key="d18">1000008</data>
+  <data key="d16">note_1000008</data>
+</node>
+<node id="14d8a38423f435ce5a8690e1">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-01-08 09:00:00</data>
+  <data key="d7">2024-01-08</data>
+  <data key="d8">09:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/2039-6</data>
+  <data key="d14">CEA Level</data>
+  <data key="d15">Value: 12.3 ng/mL (elevated)</data>
+  <data key="d16">14d8a38423f435ce5a8690e1</data>
+</node>
+<node id="fac8f7d1f05dec8e0696cfdc">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-01-08 09:00:00</data>
+  <data key="d7">2024-01-08</data>
+  <data key="d8">09:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/57021-8</data>
+  <data key="d14">CBC Panel</data>
+  <data key="d15">WBC: 9.1 x10^3/uL, Hb: 12.8 g/dL, Plt: 180 x10^3/uL</data>
+  <data key="d16">fac8f7d1f05dec8e0696cfdc</data>
+</node>
+<node id="proc_6000007">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-02-22 11:00:00</data>
+  <data key="d7">2024-02-22</data>
+  <data key="d8">11:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">CPT/31629</data>
+  <data key="d14">EBUS-FNA of mediastinal nodes</data>
+  <data key="d15"></data>
+  <data key="d19">6000007</data>
+  <data key="d16">proc_6000007</data>
+</node>
+<node id="note_1000009">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-02-22 11:00:00</data>
+  <data key="d7">2024-02-22</data>
+  <data key="d8">11:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/33756-9</data>
+  <data key="d14">Pathology Report</data>
+  <data key="d15">FNA from mediastinal nodes: Positive for squamous cell carcinoma, ALK rearrangement confirmed via FISH. Updated NGS: ALK positive; all other markers (EGFR, ROS1, BRAF, MET, RET, NTRK, KRAS, ERBB2, NRG1) negative. PD-L1 TPS 20% (low). Recommend initiation of systemic therapy.</data>
+  <data key="d18">1000009</data>
+  <data key="d16">note_1000009</data>
+</node>
+<node id="visit_5000003">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-03-15 08:00:00</data>
+  <data key="d7">2024-03-15</data>
+  <data key="d8">08:00</data>
+  <data key="d9">visit</data>
+  <data key="d0">Visit</data>
+  <data key="d10">5000003</data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">HEALTHCARE_VISIT/Outpatient|Treatment Initiation</data>
+  <data key="d14"></data>
+  <data key="d15"></data>
+  <data key="d16">visit_5000003</data>
+  <data key="d17">1</data>
+</node>
+<node id="note_1000010">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-03-15 08:00:00</data>
+  <data key="d7">2024-03-15</data>
+  <data key="d8">08:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/74156-1</data>
+  <data key="d14">Oncology Treatment Plan Note</data>
+  <data key="d15">Initiated pembrolizumab + carboplatin/paclitaxel for metastatic ALK-positive squamous NSCLC. Vitals: BP 140/85, HR 92, SpO2 94%, Weight 78 kg, BMI 25.1. Patient counseled on side effects. ALK inhibitors like alectinib considered for future if progression. Follow-up imaging in 2 months.</data>
+  <data key="d18">1000010</data>
+  <data key="d16">note_1000010</data>
+</node>
+<node id="visit_5000004">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-05-10 13:00:00</data>
+  <data key="d7">2024-05-10</data>
+  <data key="d8">13:00</data>
+  <data key="d9">visit</data>
+  <data key="d0">Visit</data>
+  <data key="d10">5000004</data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">HEALTHCARE_VISIT/Outpatient|Follow-up After 2 Cycles</data>
+  <data key="d14"></data>
+  <data key="d15"></data>
+  <data key="d16">visit_5000004</data>
+  <data key="d17">1</data>
+</node>
+<node id="note_1000011">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-05-10 13:00:00</data>
+  <data key="d7">2024-05-10</data>
+  <data key="d8">13:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Progress Note</data>
+  <data key="d15">After 2 cycles of therapy: Partial response noted on interim CT (mass reduced to 4.2 cm). However, patient reports grade 2 neuropathy and fatigue. Dose reduction implemented. Continue regimen; reassess after 2 more cycles. No new mets on bone scan.</data>
+  <data key="d18">1000011</data>
+  <data key="d16">note_1000011</data>
+</node>
+<node id="cc06326acf9e1ecdd8916b58">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-05-10 13:00:00</data>
+  <data key="d7">2024-05-10</data>
+  <data key="d8">13:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/2039-6</data>
+  <data key="d14">CEA Level</data>
+  <data key="d15">Value: 7.6 ng/mL (decreasing)</data>
+  <data key="d16">cc06326acf9e1ecdd8916b58</data>
+</node>
+<node id="bd04c819f2ba6393ae246ab7">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-05-10 13:00:00</data>
+  <data key="d7">2024-05-10</data>
+  <data key="d8">13:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/57021-8</data>
+  <data key="d14">CBC Panel</data>
+  <data key="d15">WBC: 6.8 x10^3/uL, Hb: 11.9 g/dL, Plt: 150 x10^3/uL</data>
+  <data key="d16">bd04c819f2ba6393ae246ab7</data>
+</node>
+<node id="visit_5000005">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-06-28 10:00:00</data>
+  <data key="d7">2024-06-28</data>
+  <data key="d8">10:00</data>
+  <data key="d9">visit</data>
+  <data key="d0">Visit</data>
+  <data key="d10">5000005</data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">HEALTHCARE_VISIT/Outpatient|Post-Treatment Follow-up</data>
+  <data key="d14"></data>
+  <data key="d15"></data>
+  <data key="d16">visit_5000005</data>
+  <data key="d17">1</data>
+</node>
+<node id="note_1000012">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-06-28 10:00:00</data>
+  <data key="d7">2024-06-28</data>
+  <data key="d8">10:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Progress Note</data>
+  <data key="d15">Completed 4 cycles with stable disease. Ongoing symptoms: Progressive cough and 6 lb weight loss. Vitals stable. Plan for restaging PET/CT. Discussed potential switch to alectinib if progression, given ALK status from prior pathology.</data>
+  <data key="d18">1000012</data>
+  <data key="d16">note_1000012</data>
+</node>
+<node id="proc_6000008">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 14:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">14:00</data>
+  <data key="d9">procedure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12">345678</data>
+  <data key="d13">CPT/78815</data>
+  <data key="d14">Restaging PET/CT</data>
+  <data key="d15"></data>
+  <data key="d19">6000008</data>
+  <data key="d16">proc_6000008</data>
+</node>
+<node id="note_1000013">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 14:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">14:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">778899</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11537-8</data>
+  <data key="d14">Imaging Report</data>
+  <data key="d15">Restaging PET/CT: Stable left lower lobe mass (4.0 cm, SUV 12.4), persistent bone lesions with mild progression in rib. No new sites. Staging remains cT3N2M1b (Stage IV). Recommend tumor board review for therapy adjustment.</data>
+  <data key="d18">1000013</data>
+  <data key="d16">note_1000013</data>
+</node>
+<node id="49073206664106533d182a64">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 14:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">14:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/2039-6</data>
+  <data key="d14">CEA Level</data>
+  <data key="d15">Value: 8.2 ng/mL</data>
+  <data key="d16">49073206664106533d182a64</data>
+</node>
+<node id="b97a8e131112290d1a689842">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 14:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">14:00</data>
+  <data key="d9">observation</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11"></data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/57021-8</data>
+  <data key="d14">CBC Panel</data>
+  <data key="d15">WBC: 7.0 x10^3/uL, Hb: 12.2 g/dL, Plt: 200 x10^3/uL</data>
+  <data key="d16">b97a8e131112290d1a689842</data>
+</node>
+<node id="bd1d2c573dd17479f47d145e">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 15:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">15:00</data>
+  <data key="d9">drug_exposure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">RxNorm/745679</data>
+  <data key="d14">Albuterol Sulfate 90 mcg/actuation Inhaler</data>
+  <data key="d15">Prescribed for COPD management, 2 puffs as needed.</data>
+  <data key="d16">bd1d2c573dd17479f47d145e</data>
+</node>
+<node id="8ee7ff00990f7bfd56a01502">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 15:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">15:00</data>
+  <data key="d9">drug_exposure</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12">123456</data>
+  <data key="d13">RxNorm/29046</data>
+  <data key="d14">Lisinopril 10 MG Oral Tablet</data>
+  <data key="d15">Prescribed for hypertension, 10 mg daily.</data>
+  <data key="d16">8ee7ff00990f7bfd56a01502</data>
+</node>
+<node id="note_1000015">
+  <data key="d5">987654321</data>
+  <data key="d6">2024-07-15 15:00:00</data>
+  <data key="d7">2024-07-15</data>
+  <data key="d8">15:00</data>
+  <data key="d9">note</data>
+  <data key="d0">Event</data>
+  <data key="d10"></data>
+  <data key="d11">112233</data>
+  <data key="d12"></data>
+  <data key="d13">LOINC/11506-3</data>
+  <data key="d14">Medication Review Note</data>
+  <data key="d15">Reviewed current medications during tumor board referral preparation. Patient on Albuterol inhaler for COPD (as needed) and Lisinopril 10 mg daily for hypertension. No changes recommended at this time; continue alongside oncology treatments. No reported allergies or interactions with ongoing pembrolizumab and chemo.</data>
+  <data key="d18">1000015</data>
+  <data key="d16">note_1000015</data>
+</node>
+<node id="xml_date_2022-02-10">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2022-02-10</data>
+</node>
+<node id="xml_note_1000001">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000001</data>
+</node>
+<node id="xml_proc_6000001">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000001</data>
+</node>
+<node id="xml_note_1000002">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000002</data>
+</node>
+<node id="xml_proc_6000002">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000002</data>
+</node>
+<node id="xml_date_2022-03-05">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2022-03-05</data>
+</node>
+<node id="xml_note_1000003">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000003</data>
+</node>
+<node id="xml_proc_6000003">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000003</data>
+</node>
+<node id="xml_note_1000004">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000004</data>
+</node>
+<node id="xml_date_2022-03-10">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2022-03-10</data>
+</node>
+<node id="xml_proc_6000004">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000004</data>
+</node>
+<node id="xml_note_1000005">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000005</data>
+</node>
+<node id="xml_date_2022-06-20">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2022-06-20</data>
+</node>
+<node id="xml_note_1000006">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000006</data>
+</node>
+<node id="xml_proc_6000005">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000005</data>
+</node>
+<node id="xml_note_1000007">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000007</data>
+</node>
+<node id="xml_proc_6000006">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000006</data>
+</node>
+<node id="xml_note_1000008">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000008</data>
+</node>
+<node id="xml_date_2024-01-08">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2024-01-08</data>
+</node>
+<node id="xml_proc_6000007">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000007</data>
+</node>
+<node id="xml_note_1000009">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000009</data>
+</node>
+<node id="xml_date_2024-03-15">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2024-03-15</data>
+</node>
+<node id="xml_note_1000010">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000010</data>
+</node>
+<node id="xml_date_2024-05-10">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2024-05-10</data>
+</node>
+<node id="xml_note_1000011">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000011</data>
+</node>
+<node id="xml_date_2024-06-28">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2024-06-28</data>
+</node>
+<node id="xml_note_1000012">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000012</data>
+</node>
+<node id="xml_date_2024-07-15">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">date</data>
+  <data key="d21">2024-07-15</data>
+</node>
+<node id="xml_note_1000015">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000015</data>
+</node>
+<node id="xml_proc_6000008">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">procedure_id</data>
+  <data key="d19">6000008</data>
+</node>
+<node id="xml_note_1000013">
+  <data key="d0">XMLFragment</data>
+  <data key="d20">note_id</data>
+  <data key="d18">1000013</data>
+</node>
+<edge source="visit_5000001" target="visit_5000001" id="0">
+  <data key="d22">VISIT_CONTAINS</data>
+  <data key="d23">5000001</data>
+</edge>
+<edge source="visit_5000001" target="xml_date_2022-02-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="visit_5000001" target="ac137007a5679886154ae0ec" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="ac137007a5679886154ae0ec" target="xml_date_2022-02-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="ac137007a5679886154ae0ec" target="note_1000001" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000001" target="xml_note_1000001" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000001" target="proc_6000001" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000001" target="xml_proc_6000001" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000001" target="note_1000002" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000002" target="xml_note_1000002" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000002" target="proc_6000002" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000002" target="xml_proc_6000002" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000002" target="8889e1865879fdeebd8fa3b5" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="8889e1865879fdeebd8fa3b5" target="xml_date_2022-03-05" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="8889e1865879fdeebd8fa3b5" target="note_1000003" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000003" target="xml_note_1000003" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000003" target="proc_6000003" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000003" target="xml_proc_6000003" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000003" target="note_1000004" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000004" target="xml_note_1000004" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000004" target="935011c987799eb21f7487fb" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="935011c987799eb21f7487fb" target="xml_date_2022-03-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="935011c987799eb21f7487fb" target="a7c91a4f86c45afc997d59e8" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="a7c91a4f86c45afc997d59e8" target="xml_date_2022-03-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="a7c91a4f86c45afc997d59e8" target="proc_6000004" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000004" target="xml_proc_6000004" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000004" target="note_1000005" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000005" target="xml_note_1000005" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000005" target="visit_5000002" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="visit_5000002" target="visit_5000002" id="0">
+  <data key="d22">VISIT_CONTAINS</data>
+  <data key="d23">5000002</data>
+</edge>
+<edge source="visit_5000002" target="xml_date_2022-06-20" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="visit_5000002" target="note_1000006" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000006" target="xml_note_1000006" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000006" target="b1935d89c346bcb12bb7c7e9" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="b1935d89c346bcb12bb7c7e9" target="xml_date_2022-06-20" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="b1935d89c346bcb12bb7c7e9" target="746df4261c76d8644565108d" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="746df4261c76d8644565108d" target="xml_date_2022-06-20" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="746df4261c76d8644565108d" target="proc_6000005" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000005" target="xml_proc_6000005" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000005" target="note_1000007" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000007" target="xml_note_1000007" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000007" target="proc_6000006" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000006" target="xml_proc_6000006" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000006" target="note_1000008" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000008" target="xml_note_1000008" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000008" target="14d8a38423f435ce5a8690e1" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="14d8a38423f435ce5a8690e1" target="xml_date_2024-01-08" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="14d8a38423f435ce5a8690e1" target="fac8f7d1f05dec8e0696cfdc" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="fac8f7d1f05dec8e0696cfdc" target="xml_date_2024-01-08" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="fac8f7d1f05dec8e0696cfdc" target="proc_6000007" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000007" target="xml_proc_6000007" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000007" target="note_1000009" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000009" target="xml_note_1000009" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000009" target="visit_5000003" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="visit_5000003" target="visit_5000003" id="0">
+  <data key="d22">VISIT_CONTAINS</data>
+  <data key="d23">5000003</data>
+</edge>
+<edge source="visit_5000003" target="xml_date_2024-03-15" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="visit_5000003" target="note_1000010" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000010" target="xml_note_1000010" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000010" target="visit_5000004" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="visit_5000004" target="visit_5000004" id="0">
+  <data key="d22">VISIT_CONTAINS</data>
+  <data key="d23">5000004</data>
+</edge>
+<edge source="visit_5000004" target="xml_date_2024-05-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="visit_5000004" target="note_1000011" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000011" target="xml_note_1000011" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000011" target="cc06326acf9e1ecdd8916b58" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="cc06326acf9e1ecdd8916b58" target="xml_date_2024-05-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="cc06326acf9e1ecdd8916b58" target="bd04c819f2ba6393ae246ab7" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="bd04c819f2ba6393ae246ab7" target="xml_date_2024-05-10" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="bd04c819f2ba6393ae246ab7" target="visit_5000005" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="visit_5000005" target="visit_5000005" id="0">
+  <data key="d22">VISIT_CONTAINS</data>
+  <data key="d23">5000005</data>
+</edge>
+<edge source="visit_5000005" target="xml_date_2024-06-28" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="visit_5000005" target="note_1000012" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000012" target="xml_note_1000012" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000012" target="proc_6000008" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="proc_6000008" target="xml_proc_6000008" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="proc_6000008" target="note_1000013" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000013" target="xml_note_1000013" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="note_1000013" target="49073206664106533d182a64" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="49073206664106533d182a64" target="xml_date_2024-07-15" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="49073206664106533d182a64" target="b97a8e131112290d1a689842" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="b97a8e131112290d1a689842" target="xml_date_2024-07-15" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="b97a8e131112290d1a689842" target="bd1d2c573dd17479f47d145e" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="bd1d2c573dd17479f47d145e" target="xml_date_2024-07-15" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="bd1d2c573dd17479f47d145e" target="8ee7ff00990f7bfd56a01502" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="8ee7ff00990f7bfd56a01502" target="xml_date_2024-07-15" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+<edge source="8ee7ff00990f7bfd56a01502" target="note_1000015" id="0">
+  <data key="d22">PRECEDES</data>
+  <data key="d24">temporal</data>
+</edge>
+<edge source="note_1000015" target="xml_note_1000015" id="0">
+  <data key="d22">SOURCED_FROM</data>
+</edge>
+</graph></graphml>

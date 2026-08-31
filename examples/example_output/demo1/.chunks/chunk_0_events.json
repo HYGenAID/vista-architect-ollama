@@ -1,0 +1,273 @@
+[
+  {
+    "date": "2022-02-10",
+    "evidence_date": "2022-02-10",
+    "source_event_refs": [
+      "E2"
+    ],
+    "type": "baseline_information",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "Smoking: quit 2018, 40 pack-years; COPD; hypertension",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-02-15",
+    "evidence_date": "2022-02-15",
+    "source_event_refs": [
+      "E3",
+      "E4"
+    ],
+    "type": "imaging",
+    "subtype": null,
+    "modality": "ct",
+    "site": "chest",
+    "description": "ct chest: 3.2 cm left upper lobe mass, hilar adenopathy; no distant mets",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-03-05",
+    "evidence_date": "2022-03-05",
+    "source_event_refs": [
+      "E5",
+      "E7"
+    ],
+    "type": "diagnostic",
+    "subtype": "biopsy",
+    "modality": null,
+    "site": "chest",
+    "description": "Biopsy: moderate sq. cell carcinoma, ALK+, EGFR/BRAF/ROS1/KRAS/other neg, PD-L1 20%",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-03-10",
+    "evidence_date": "2022-03-10",
+    "source_event_refs": [
+      "E8",
+      "E9"
+    ],
+    "type": "imaging",
+    "subtype": null,
+    "modality": "pet-ct",
+    "site": "chest",
+    "description": "pet-ct chest: hypermetabolic LUL nodule (SUV 14.2), hilar node involvement, no distant mets",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-03-10",
+    "evidence_date": "2022-03-10",
+    "source_event_refs": [
+      "E9"
+    ],
+    "type": "lab",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "CEA 4.5; all other labs normal",
+    "priority": "MINOR",
+    "values": {
+      "CEA": "4.5"
+    }
+  },
+  {
+    "date": "2022-04-18",
+    "evidence_date": "2022-04-18",
+    "source_event_refs": [
+      "E12",
+      "E13"
+    ],
+    "type": "surgery",
+    "subtype": null,
+    "modality": null,
+    "site": "chest",
+    "description": "Left upper lobectomy w/ mediastinal node dissection; margins clear",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-06-20",
+    "evidence_date": "2022-06-20",
+    "source_event_refs": [
+      "E14"
+    ],
+    "type": "critical_information",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "ECOG 0 post-op; no adjuvant tx; recovery good",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2022-06-20",
+    "evidence_date": "2022-06-20",
+    "source_event_refs": [
+      "E14"
+    ],
+    "type": "lab",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "CEA 3.8",
+    "priority": "MINOR",
+    "values": {
+      "CEA": "3.8"
+    }
+  },
+  {
+    "date": "2023-11-15",
+    "evidence_date": "2023-11-15",
+    "source_event_refs": [
+      "E17",
+      "E18"
+    ],
+    "type": "imaging",
+    "subtype": null,
+    "modality": "ct",
+    "site": "chest",
+    "description": "ct chest: new 2.5 cm LLL nodule, mild hilar enlargement, suspicious recurrence",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-01-08",
+    "evidence_date": "2024-01-08",
+    "source_event_refs": [
+      "E19",
+      "E20"
+    ],
+    "type": "imaging",
+    "subtype": null,
+    "modality": "pet-ct",
+    "site": "whole_body",
+    "description": "pet-ct whole_body: 6.5x4.8 cm LLL mass (SUV 18.6), nodules, hilar nodes, T10/rib bone mets",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-01-08",
+    "evidence_date": "2024-01-08",
+    "source_event_refs": [
+      "E20"
+    ],
+    "type": "lab",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "CEA 12.3\u2191",
+    "priority": "MAJOR",
+    "values": {
+      "CEA": "12.3\u2191"
+    }
+  },
+  {
+    "date": "2024-02-22",
+    "evidence_date": "2024-02-22",
+    "source_event_refs": [
+      "E23",
+      "E24"
+    ],
+    "type": "diagnostic",
+    "subtype": "biopsy",
+    "modality": null,
+    "site": "chest",
+    "description": "EBUS-FNA: squamous cell carcinoma, ALK+ by FISH, other driver mutations negative, PD-L1 20%",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-03-15",
+    "evidence_date": "2024-03-15",
+    "source_event_refs": [
+      "E25"
+    ],
+    "type": "treatment",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "Pembrolizumab + carboplatin/paclitaxel started for metastatic ALK+ NSCLC",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-05-10",
+    "evidence_date": "2024-05-10",
+    "source_event_refs": [
+      "E26"
+    ],
+    "type": "critical_information",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "Partial response after 2 cycles; grade 2 neuropathy/fatigue, dose reduction",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-05-10",
+    "evidence_date": "2024-05-10",
+    "source_event_refs": [
+      "E26"
+    ],
+    "type": "lab",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "CEA 7.6 (decreasing), Hb 11.9\u2193",
+    "priority": "MINOR",
+    "values": {
+      "CEA": "7.6",
+      "Hb": "11.9\u2193"
+    }
+  },
+  {
+    "date": "2024-06-28",
+    "evidence_date": "2024-06-28",
+    "source_event_refs": [
+      "E29"
+    ],
+    "type": "critical_information",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "Completed 4 cycles; stable disease; progressive cough/weight loss; plan restaging PET-CT",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-07-15",
+    "evidence_date": "2024-07-15",
+    "source_event_refs": [
+      "E30",
+      "E31"
+    ],
+    "type": "imaging",
+    "subtype": null,
+    "modality": "pet-ct",
+    "site": "whole_body",
+    "description": "pet-ct whole_body: stable LLL mass (4.0 cm), mild rib bone lesion progression, no new sites",
+    "priority": "MAJOR"
+  },
+  {
+    "date": "2024-07-15",
+    "evidence_date": "2024-07-15",
+    "source_event_refs": [
+      "E31"
+    ],
+    "type": "lab",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "CEA 8.2",
+    "priority": "MINOR",
+    "values": {
+      "CEA": "8.2"
+    }
+  },
+  {
+    "date": "2024-07-15",
+    "evidence_date": "2024-07-15",
+    "source_event_refs": [
+      "E36"
+    ],
+    "type": "critical_information",
+    "subtype": null,
+    "modality": null,
+    "site": null,
+    "description": "Current meds: Albuterol (COPD), Lisinopril (HTN); no changes, no allergies",
+    "priority": "MINOR"
+  }
+]
