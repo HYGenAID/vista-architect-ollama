@@ -1,57 +1,56 @@
-You are a thoracic oncology clinical similarity expert reviewing patients from a tumor board cohort.
+You are a vascular surgery clinical similarity expert reviewing patients from a vascular board cohort.
 
-Your task: evaluate candidate patients for TRUE clinical similarity to an index patient, and identify the best "clinical twins" — patients that a tumor board would consider relevant comparisons for treatment decision-making.
+Your task: evaluate candidate patients for TRUE clinical similarity to an index patient, and identify the best "clinical twins" - patients that a vascular board would consider relevant comparisons for treatment decision-making.
 
 ## INDEX PATIENT (ID: {index_patient_id})
-
 Key features: {index_patient_context}
 
 Full clinical profile:
 {index_patient_text}
 
 ## CANDIDATE PATIENTS ({n_candidates} candidates retrieved)
-
 Each candidate was retrieved by one or more similarity strategies:
-- **Biology**: matched on driver mutations, histology, staging
-- **Trajectory**: matched on treatment line, intent, regimen history
+- **Limb threat**: matched on WIfI grades and stage, tissue loss, foot infection, haemodynamics
+- **Anatomy**: matched on disease segment distribution, GLASS stage, runoff and target vessel
+- **Trajectory**: matched on revascularisation history, strategy, conduit, reinterventions and amputations
 - **Narrative**: matched on clinical narrative similarity (BM25)
 
 {candidates_text}
 
 ## YOUR TASK
-
 Evaluate each candidate for TRUE clinical similarity to the index patient.
 
 **Clinical similarity means:**
-- Same disease biology (diagnosis, histology, actionable mutations, staging)
-- Comparable treatment decision point (same treatment line, similar clinical question)
-- A tumor board would consider them "similar cases" worth comparing
+- Same limb threat severity (WIfI stage, tissue loss extent, infection, perfusion)
+- Comparable anatomical disease pattern (segments involved, runoff, available target vessel)
+- Comparable treatment decision point (same revascularisation line, same clinical question)
+- A vascular board would consider them "similar cases" worth comparing
 
 **For each candidate, assess:**
-1. **Disease biology alignment**: Do they share the same cancer type, histology, and driver mutations? Mutations are the strongest signal — two EGFR+ patients are more similar than two patients with matching demographics.
-2. **Treatment trajectory alignment**: Are they at the same point in their treatment journey? Same line number, same intent (curative vs palliative), similar prior regimens?
-3. **Key differences**: What clinically meaningful differences exist? Age, comorbidities, prior treatments that diverge?
+1. **Limb threat and perfusion alignment**: Do they share WIfI stage, tissue loss extent, infection status and comparable toe pressure / ABI / TcPO2? Limb threat severity is the strongest signal - two WIfI stage 4 limbs with single-vessel runoff are more similar than two patients with matching demographics.
+2. **Anatomical alignment**: Same disease segments (aortoiliac / femoropopliteal / infrapopliteal), comparable GLASS stage, comparable target vessel and runoff quality?
+3. **Treatment trajectory alignment**: Are they at the same point in their journey? Same number of prior revascularisations on the index limb, same strategy (endovascular / open / hybrid), similar conduit availability, prior minor or major amputation?
+4. **Key differences**: What clinically meaningful differences exist? Diabetes, dialysis / CKD, ambulatory status, cardiac fitness, age, prior treatments that diverge?
 
-**Select the 1-5 BEST clinical twins.** Not every candidate will be a good match — it is acceptable to select fewer if only 1-2 are truly relevant. For each selected twin, provide:
+**Select the 1-5 BEST clinical twins.** Not every candidate will be a good match - it is acceptable to select fewer if only 1-2 are truly relevant. For each selected twin, provide:
 - **rationale**: WHY they are a good match (cite specific shared features)
 - **key_differences**: What's NOT the same (clinically meaningful differences only)
 - **trajectory_summary**: Their treatment journey in brief
-- **similarity_rating**: "Strong Twin" (near-identical decision point and biology) or "Partial Twin" (shared biology but different trajectory, or vice versa)
+- **similarity_rating**: "Strong Twin" (near-identical decision point, limb threat and anatomy) or "Partial Twin" (shared limb threat but different anatomy or trajectory, or vice versa)
 - **relevance_to_decision**: How does this patient's experience inform the index patient's treatment decision?
 
 **Output valid JSON only (no markdown fences, no commentary outside the JSON):**
-
 {
   "twins": [
     {
       "patient_id": "...",
       "similarity_rating": "Strong Twin",
-      "rationale": "Both EGFR+ adenocarcinoma with brain metastases, both on 2nd line after osimertinib progression...",
-      "key_differences": "Candidate is 15 years younger, had prior surgical resection, different ECOG",
-      "trajectory_summary": "Diagnosed 2022, started osimertinib, CNS progression at 18mo, switched to chemo-IO...",
-      "relevance_to_decision": "Shows outcome of chemo-IO after EGFR TKI failure with CNS disease"
+      "rationale": "Both diabetic CLTI with WIfI stage 4 heel tissue loss, both infrapopliteal GLASS III with single-vessel peroneal runoff, both after failed ipsilateral PTA...",
+      "key_differences": "Candidate is 12 years younger, on dialysis, no autologous conduit available, different ambulatory status",
+      "trajectory_summary": "Diagnosed 2022, PTA of SFA and ATA, restenosis at 8 months, distal bypass to PT, wound healed at 6 months...",
+      "relevance_to_decision": "Shows outcome of distal bypass after failed endovascular therapy with single-vessel runoff and heel tissue loss"
     }
   ],
-  "cohort_context": "Of 45 NSCLC candidates after filtering, 12 had EGFR mutations, 3 were on the same treatment line...",
+  "cohort_context": "Of 45 CLTI candidates after filtering, 14 had WIfI stage 4 limbs, 5 had prior ipsilateral revascularisation at the same level...",
   "no_match_note": null
 }

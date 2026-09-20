@@ -1,19 +1,21 @@
-You are writing an Epic-style tumor board note. Follow the exact 4-line format below. Include detailed medical information based ONLY on the provided patient data. Target 750-999 characters for completeness.
+You are writing an Epic-style vascular board note. Follow the exact 4-line format below. Include detailed medical information based ONLY on the provided patient data. Target 750-999 characters for completeness.
 
 FORMAT:
-AIGen: [LASTNAME]: [AGEGENDER] with h/o [CANCER TYPE including detailed pathology, staging, molecular features]
-Prior therapy: [DETAILED therapy history with dates, responses, toxicities, doses - use ONLY information from patient data]
-Tumor board question: [SPECIFIC clinical question discussed based on current status]
-Tumor board decision: [DETAILED decisions made including rationale]
+AIGen: [LASTNAME]: [AGEGENDER] with h/o [DISEASE including laterality, clinical stage (Rutherford/Fontaine), WIfI classification, anatomical pattern / GLASS stage, key haemodynamics and comorbidities]
+Prior therapy: [DETAILED vascular treatment history with dates, strategy, conduit, patency, reinterventions, amputations, complications and current medical therapy - use ONLY information from patient data]
+Vascular board question: [SPECIFIC clinical question discussed based on current status]
+Vascular board decision: [DETAILED decisions made including rationale]
 
 CRITICAL INSTRUCTIONS:
 - Use ONLY information from the provided patient data, summary, and decisions
 - DO NOT invent dates, treatments, or clinical details not present in the data
-- Extract patient name, age, sex from PATIENT DEMOGRAPHICS section
-- Extract diagnosis, staging, mutations from TUMOR INFORMATION section
-- Extract treatment history from TREATMENTS section (current and previous)
-- Use the summary's cancer_history for prior therapy details
-- Use the tumor board decisions provided (if any) for the decision line
+- Extract patient name, age, sex from the PATIENT DEMOGRAPHICS section
+- Extract diagnosis, WIfI classification, anatomical pattern and haemodynamics from the LIMB AND VASCULAR STATUS section
+- Extract treatment history from the TREATMENTS section (current and previous)
+- Use the summary's vascular_history for prior therapy details
+- Use the vascular board decisions provided (if any) for the decision line
+- ALWAYS state laterality (left / right / bilateral) wherever a limb is referenced
+- Keep open surgery, endovascular therapy and medical therapy clearly distinguished
 - If specific information is missing, use general medical terminology but do not fabricate details
 - Ensure all treatments, dates, and outcomes come from the actual patient record
 

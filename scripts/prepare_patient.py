@@ -34,6 +34,7 @@ import argparse
 import sys
 import os
 import json
+import re
 import time
 from datetime import datetime
 from pathlib import Path
@@ -160,30 +161,44 @@ def load_prompts() -> Dict[str, str]:
 
 def fix_patient_info_keys(data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Fix patient_info JSON keys to use spaces instead of underscores.
-    App expects "PATIENT DEMOGRAPHICS", "TUMOR INFORMATION", "TREATMENTS".
-    Also strips leading/trailing whitespace from all keys (LLM sometimes adds spaces).
+    Normalise patient_info section keys to the Finnish names the app expects:
+    "POTILAAN PERUSTIEDOT", "RAAJAN JA VERISUONTEN TILA", "HOIDOT".
+
+    Tolerates underscores, mixed spaces/underscores and stray whitespace
+    (LLMs produce all of these), and maps the old English section names to
+    Finnish as a fallback in case the model ignores the language instruction.
+    Also strips leading/trailing whitespace from nested keys.
     """
+    # Canonical section names (with spaces, as written in the prompt)
+    SECTION_PERUSTIEDOT = "POTILAAN PERUSTIEDOT"
+    SECTION_RAAJA = "RAAJAN JA VERISUONTEN TILA"
+    SECTION_HOIDOT = "HOIDOT"
+
+    # Keys are compared after: strip, upper-case, underscores -> spaces, collapse spaces
     key_mapping = {
-        "PATIENT_DEMOGRAPHICS": "PATIENT DEMOGRAPHICS",
-        "TUMOR_INFORMATION": "TUMOR INFORMATION",
-        "TREATMENTS": "TREATMENTS"
+        # Finnish (canonical + variants)
+        "POTILAAN PERUSTIEDOT": SECTION_PERUSTIEDOT,
+        "PERUSTIEDOT": SECTION_PERUSTIEDOT,
+        "RAAJAN JA VERISUONTEN TILA": SECTION_RAAJA,
+        "VERISUONTEN TILA": SECTION_RAAJA,
+        "RAAJAN TILA": SECTION_RAAJA,
+        "HOIDOT": SECTION_HOIDOT,
+        # English fallbacks (old schema / model slipped back to English)
+        "PATIENT DEMOGRAPHICS": SECTION_PERUSTIEDOT,
+        "LIMB AND VASCULAR STATUS": SECTION_RAAJA,
+        "VASCULAR STATUS": SECTION_RAAJA,
+        "TREATMENTS": SECTION_HOIDOT,
     }
+
+    def _norm(key: str) -> str:
+        return re.sub(r"\s+", " ", key.strip().upper().replace("_", " "))
 
     fixed = {}
     for key, value in data.items():
-        clean_key = key.strip()
-        fixed_key = key_mapping.get(clean_key, clean_key)
-        # Also strip keys in nested dicts and fix common LLM misspellings
+        fixed_key = key_mapping.get(_norm(key), key.strip())
+        # Also strip whitespace from keys in nested dicts
         if isinstance(value, dict):
-            cleaned = {}
-            for k, v in value.items():
-                ck = k.strip()
-                # Fix LLM misspellings of lymph_node_involvement
-                if ck != 'lymph_node_involvement' and 'node_involvement' in ck and ck.startswith(('l', 'y')):
-                    ck = 'lymph_node_involvement'
-                cleaned[ck] = v
-            value = cleaned
+            value = {k.strip(): v for k, v in value.items()}
         fixed[fixed_key] = value
 
     return fixed

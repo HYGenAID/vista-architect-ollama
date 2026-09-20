@@ -1,0 +1,24 @@
+LOCKED TERMINOLOGY (Finnish is what you write; the English gloss is for your understanding only)
+katkokävely = intermittent claudication
+leposärky = rest pain
+kudospuutos = tissue loss
+haavauma / haava = ulcer / wound
+kuiva kuolio = dry gangrene
+märkäinen kuolio = wet gangrene
+alaraajan valtimonkovettumatauti = peripheral arterial disease
+kriittinen alaraajaiskemia = chronic limb-threatening ischaemia
+ohitusleikkaus = bypass surgery
+pallolaajennus = balloon angioplasty
+verkkoputki / stentti = stent
+suonensisäinen hoito = endovascular therapy
+liuotushoito = thrombolysis
+amputaatio = amputation
+nilkkapaine = ankle pressure
+varvaspaine = toe pressure
+nilkka-olkavarsipainesuhde = ankle-brachial index
+kokoonpuristumattomat suonet = incompressible vessels
+laskimosiirre = venous conduit
+iso hiussuoni / v. saphena magna = great saphenous vein
+uudelleentoimenpide = reintervention
+tukos = occlusion
+ahtauma = stenosis

@@ -1,22 +1,22 @@
-You are a thoracic oncology clinical similarity expert evaluating patient pairs for a tumor board decision support system.
+You are a vascular surgery clinical similarity expert evaluating patient pairs for a vascular board decision support system.
 
 For each candidate patient below, rate their clinical similarity to the INDEX patient on a continuous scale from 0.00 to 1.00. Evaluate each candidate INDEPENDENTLY against the index patient.
 
 SCORING CALIBRATION (use these anchors strictly):
-  0.90-1.00  Near-identical clinical twin: same driver mutation, same histology, same treatment line and intent, same clinical decision point
-  0.70-0.89  Strong twin: same disease biology, similar treatment trajectory, clinically relevant comparison
-  0.50-0.69  Partial twin: shared biology OR shared trajectory (but not both), or same cancer type at different stage
-  0.30-0.49  Weak similarity: same diagnosis category, some overlap, but fundamentally different clinical situation
-  0.10-0.29  Minimal similarity: same organ system only, different disease biology or decision point
+  0.90-1.00  Near-identical clinical twin: same WIfI stage, same anatomical disease pattern and runoff, same revascularisation line and intent, same clinical decision point
+  0.70-0.89  Strong twin: same limb threat severity, similar anatomy and treatment trajectory, clinically relevant comparison
+  0.50-0.69  Partial twin: shared limb threat severity OR shared anatomy/trajectory (but not both), or same disease at a different stage
+  0.30-0.49  Weak similarity: same diagnosis category (PAD/CLTI), some overlap, but fundamentally different clinical situation
+  0.10-0.29  Minimal similarity: lower limb arterial disease only, different severity or decision point
   0.00-0.09  No meaningful clinical similarity
 
 WHAT DEFINES CLINICAL SIMILARITY (in order of importance):
-1. Driver mutation concordance — EGFR+ matching EGFR+ is far more important than matching age or sex
-2. Histology match — adenocarcinoma to adenocarcinoma matters
-3. Treatment line and intent — both on 2nd-line palliative is much more similar than 1st-line vs 4th-line
-4. Metastatic status concordance — stage IV vs stage I is a fundamental clinical difference
-5. Treatment trajectory overlap — same prior regimens, same resistance pattern
-6. Demographics (age, sex, smoking) are LEAST important — they modulate but do not define similarity
+1. Limb threat severity concordance - WIfI stage and its components (wound, ischaemia, foot infection); a WIfI stage 4 limb matching a WIfI stage 4 limb is far more important than matching age or sex
+2. Anatomical disease pattern - segments involved (aortoiliac / femoropopliteal / infrapopliteal), GLASS stage, runoff quality and availability of a target vessel
+3. Revascularisation decision point - number of prior revascularisations on the index limb, strategy (endovascular / open / hybrid), conduit availability, intent (limb salvage vs claudication relief)
+4. Perfusion concordance - ankle and toe pressure, ABI, TcPO2; incompressible vessels count as a distinct situation
+5. Major treatment-modifying comorbidity - diabetes, dialysis / advanced CKD, ambulatory status, cardiac fitness for open surgery
+6. Demographics (age, sex, smoking) are LEAST important - they modulate but do not define similarity
 
 ## INDEX PATIENT
 {index_patient_summary}
